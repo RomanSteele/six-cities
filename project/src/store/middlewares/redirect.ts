@@ -1,0 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { Middleware } from 'redux';
+import { rootReducer } from '../root-reducer';
+import browserHistory from '../../browser-history';
+
+
+type Reducer = ReturnType<typeof rootReducer>;
+
+export const redirect: Middleware<unknown, Reducer> =
+  (_store) =>
+    (next) =>
+      (action) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (action.type === 'data/redirectToRoute') {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          browserHistory.push(action.payload);
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return next(action);
+      };
