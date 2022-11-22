@@ -5,7 +5,7 @@ type SinglePlaceCardProps = {
 };
 
 
-function SinglePlaceCard({ property }:SinglePlaceCardProps): JSX.Element {
+function SinglePlaceCard({ property }: SinglePlaceCardProps): JSX.Element {
 
   const { previewImage, title, type, price } = property;
 
@@ -31,7 +31,7 @@ function SinglePlaceCard({ property }:SinglePlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{ width: '80%' }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
