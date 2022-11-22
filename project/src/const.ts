@@ -1,7 +1,8 @@
 export enum AppRoute {
   Main = '/',
   Login = '/login',
-  Property = '/property',
+  Property = '/offer',
+  PropertyRoute = '/offer/:id',
   Favorites = '/favorites',
 }
 
@@ -13,10 +14,12 @@ export enum NameSpace {
 
 export enum ApiType {
   DataFetchProperties = 'data/fetchProperties',
+  DataFetchChosenProperty = 'data/fetchChosenProperty'
 }
 
 export enum APIRoute {
   Properties = '/hotels',
+  Property = '/hotels',
   Login = '/login',
   Logout = '/logout',
   Favorites = '/favorite',
@@ -38,3 +41,4 @@ export const SortOptions = [
   'Price: high to low',
   'Top rated first',
 ];
+

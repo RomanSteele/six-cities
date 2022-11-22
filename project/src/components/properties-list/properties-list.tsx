@@ -18,12 +18,11 @@ function PropertiesList({ properties }: PropertiesListProps) {
   const PropertyWindowPiece = document.getElementById('element-to-scroll');
 
   useEffect(() =>{
-    console.log(Props.length, PropsMaxLength);
+
     if (PropertyWindowPiece !== null && Props.length < PropsMaxLength){
       const scrollHandler = () => {
         if ((PropertyWindowPiece.scrollHeight - PropertyWindowPiece.scrollTop <= PropertyWindowPiece.clientHeight + 50)){
           setPage(page + 1);
-          console.log('did');
         }
       };
       PropertyWindowPiece.addEventListener('scroll', scrollHandler);

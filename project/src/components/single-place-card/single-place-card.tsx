@@ -1,3 +1,5 @@
+//import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { Property } from '../../types/property';
 
 type SinglePlaceCardProps = {
@@ -7,12 +9,14 @@ type SinglePlaceCardProps = {
 
 function SinglePlaceCard({ property }: SinglePlaceCardProps): JSX.Element {
 
-  const { previewImage, title, type, price } = property;
+  const { previewImage, title, type, price, id, rating } = property;
+
+  //const navigate = useNavigate();
 
   return (
     <article className="cities__place-card place-card">
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/#">
+        <a href={(`${AppRoute.Property}/${id}`)}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place pic"></img>
         </a>
       </div>
@@ -31,7 +35,7 @@ function SinglePlaceCard({ property }: SinglePlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${rating * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
