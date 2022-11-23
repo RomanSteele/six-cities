@@ -6,8 +6,20 @@ import { Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen';
 import PropertyScreen from '../../pages/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { useAppSelector } from '../../hooks';
 
 function App(): JSX.Element {
+
+  const { isDataLoaded } = useAppSelector(({ DATA }) => DATA);
+
+  if (!isDataLoaded) {
+
+    return (
+      <LoadingScreen />
+    );
+
+  }
   return (
     <Routes>
       <Route

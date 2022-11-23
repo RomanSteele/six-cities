@@ -8,6 +8,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export type Data = {
   properties: Property[];
+  isDataLoaded: boolean;
   chosenProperty: Property;
 };
 

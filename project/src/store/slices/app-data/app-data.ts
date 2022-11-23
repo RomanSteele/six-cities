@@ -5,6 +5,7 @@ import { Data } from '../../../types/state';
 
 const initialState: Data = {
   properties: [],
+  isDataLoaded: false,
   chosenProperty: {
     bedrooms: 0,
     city: {
@@ -49,10 +50,12 @@ export const data = createSlice ({
     loadProperties: (state, action) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.properties = action.payload;
+      state.isDataLoaded = true;
     },
     loadChosenProperty: (state, action) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.chosenProperty = action.payload;
+      state.isDataLoaded = true;
     },
   },
 });
