@@ -1,7 +1,7 @@
 //import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 //import FavoritesScreen from '../../pages/favorites-screen';
-//import LoginScreen from '../../pages/login-screen';
+import LoginScreen from '../../pages/login-screen';
 import { Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen';
 import PropertyScreen from '../../pages/property-screen';
@@ -29,6 +29,12 @@ function App(): JSX.Element {
       <Route
         path={AppRoute.PropertyRoute}
         element={<PropertyScreen />}
+      />
+      <Route
+        path={AppRoute.Login}
+        element={
+          <LoginScreen />
+        }
       />
       <Route
         path="*"

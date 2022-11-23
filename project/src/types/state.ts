@@ -1,5 +1,6 @@
 import { store } from '../store/index';
 import { Property } from './property';
+import { UserLoginData } from './user-login-data';
 
 
 export type State = ReturnType<typeof store.getState>;
@@ -18,5 +19,6 @@ export type Action = {
 }
 
 export type User = {
-  authorizationStatus: boolean;
+  authorizationStatus: string;
+  userLoginData: UserLoginData;
 }

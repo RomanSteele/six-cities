@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/header/header';
+import MapInsert from '../components/map-insert/map-insert';
 import PropertyScreenImages from '../components/property-screen-images/property-screen-images';
 import PropertyScreenInsideList from '../components/property-screen-inside-list/property-screen-inside-list';
 import { AppRoute } from '../const';
@@ -26,8 +27,6 @@ function PropertyScreen(): JSX.Element {
   }, [navigate, propertyId]);
 
   const chosenProperty = useAppSelector(({ DATA }) => DATA.chosenProperty);
-
-  console.log(chosenProperty);
 
   return (
     <div className="page">
@@ -184,7 +183,9 @@ function PropertyScreen(): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <MapInsert properties={[chosenProperty]}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

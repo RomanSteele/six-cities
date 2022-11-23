@@ -1,6 +1,8 @@
+
 import UserBlock from '../login-block/login-block';
 
 function Header(): JSX.Element {
+
 
   return (
     <header className="header">
@@ -12,7 +14,7 @@ function Header(): JSX.Element {
             </a>
           </div>
           <nav className="header__nav">
-            <UserBlock/>
+            {window.location.href.toString().includes('login') ? '' : <UserBlock/>}
           </nav>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { AppRoute } from '../../const';
 import { Property } from '../../types/property';
+import { useMap } from 'react-leaflet';
+import { useEffect } from 'react';
 
 type MapInsertProps = {
   properties: Property[];
@@ -14,11 +16,24 @@ function MapInsert({ properties }: MapInsertProps): JSX.Element {
     zoom: properties[0].city.location.zoom,
   };
 
-  console.log(propertiesOfCity);
+
+  const positionLatitude = propertiesOfCity.latitude;
+  const positionLongtitude = propertiesOfCity.longtitude;
+
+  function FlyMapTo() {
+
+    const map = useMap();
+
+    useEffect(() => {
+      map.flyTo([positionLatitude, positionLongtitude]);
+    }, [map]);
+
+    return null;
+  }
 
   return (
 
-    <MapContainer style={{ width: '100%', height: '100%' }} center={[propertiesOfCity.latitude, propertiesOfCity.longtitude ]} zoom={propertiesOfCity.zoom} >
+    <MapContainer style={{ width: '100%', height: '100%' }} center={[positionLatitude, positionLongtitude]} zoom={propertiesOfCity.zoom} >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -33,6 +48,7 @@ function MapInsert({ properties }: MapInsertProps): JSX.Element {
           </Popup>
         </Marker>
       ))}
+      <FlyMapTo />
     </MapContainer>
 
 

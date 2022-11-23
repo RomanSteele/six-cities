@@ -14,7 +14,9 @@ export enum NameSpace {
 
 export enum ApiType {
   DataFetchProperties = 'data/fetchProperties',
-  DataFetchChosenProperty = 'data/fetchChosenProperty'
+  DataFetchChosenProperty = 'data/fetchChosenProperty',
+  UserLogin = 'user/login',
+  UserLogout = 'user/logout',
 }
 
 export enum APIRoute {
@@ -41,31 +43,9 @@ export const SortOptions = [
   'Price: high to low',
   'Top rated first',
 ];
-/*
-export const chosenProperty = {
-  Paris: {
-    Lat: 48.85661,
-    Lng: 2.351499,
-  },
-  Cologne: {
-    Lat: 50.938361,
-    Lng: 6.959974,
-  },
-  Brussels: {
-    Lat: 50.846557,
-    Lng: 4.351697,
-  },
-  Amsterdam: {
-    Lat: 52.37454,
-    Lng: 4.897976,
-  },
-  Hamburg: {
-    Lat: 53.550341,
-    Lng: 10.000654,
-  },
-  Dusseldorf: {
-    Lat: 51.225402,
-    Lng: 6.776314,
-  }
-};
-*/
+
+export enum AuthorizationStatus {
+  Authorized = 'AUTH',
+  NotAuthorized = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
