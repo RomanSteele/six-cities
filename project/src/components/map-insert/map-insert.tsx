@@ -3,6 +3,7 @@ import { AppRoute } from '../../const';
 import { Property } from '../../types/property';
 import { useMap } from 'react-leaflet';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 type MapInsertProps = {
   properties: Property[];
@@ -41,10 +42,10 @@ function MapInsert({ properties }: MapInsertProps): JSX.Element {
       {properties.map((item) => (
         <Marker position={[item.location.latitude, item.location.longitude]} zoom={item.location.zoom} key={item.location.latitude * Math.random()}>
           <Popup >
-            <a href={((`${AppRoute.Property}/${item.id}`))}>
+            <Link to={((`${AppRoute.Property}/${item.id}`))}>
               <img className="place-card__image" src={item.previewImage} width="150" height="70" alt="Place pic" style={{ margin: 'auto' }}></img>
               {item.title}
-            </a>
+            </Link>
           </Popup>
         </Marker>
       ))}

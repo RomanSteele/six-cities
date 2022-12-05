@@ -1,3 +1,5 @@
+import { Stars } from './types/stars';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -15,8 +17,12 @@ export enum NameSpace {
 export enum ApiType {
   DataFetchProperties = 'data/fetchProperties',
   DataFetchChosenProperty = 'data/fetchChosenProperty',
+  DataFetchChosenPropertyReviews = 'data/fetchChosenPropertyReviews',
+  DataFetchFavoritesList = 'data/fetchPropertyList',
   UserLogin = 'user/login',
   UserLogout = 'user/logout',
+  FavoriteListAdd = 'favorite/addProperty',
+  PostReview = 'property/postReview'
 }
 
 export enum APIRoute {
@@ -25,6 +31,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Favorites = '/favorite',
+  Reviews = '/comments'
 }
 
 export const Cities = [
@@ -49,3 +56,11 @@ export enum AuthorizationStatus {
   NotAuthorized = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export const STARS: Stars[] = [
+  { 'id': 5 },
+  { 'id': 4 },
+  { 'id': 3 },
+  { 'id': 2 },
+  { 'id': 1 },
+];

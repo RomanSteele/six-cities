@@ -41,6 +41,18 @@ const initialState: Data = {
     type: '',
 
   },
+  chosenPropertyReviews: [{
+    comment: '',
+    date: '',
+    id: 0,
+    rating: 0,
+    user: {
+      avatarUrl: '',
+      id: 0,
+      isPro: false,
+      name: '',
+    },
+  }]
 };
 
 export const data = createSlice ({
@@ -57,7 +69,12 @@ export const data = createSlice ({
       state.chosenProperty = action.payload;
       state.isDataLoaded = true;
     },
+    loadChosenPropertyReviews: (state, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      state.chosenPropertyReviews = action.payload;
+      state.isDataLoaded = true;
+    },
   },
 });
 
-export const { loadProperties, loadChosenProperty } = data.actions;
+export const { loadProperties, loadChosenProperty, loadChosenPropertyReviews } = data.actions;

@@ -1,6 +1,6 @@
-//import { Route, Routes } from 'react-router-dom';
+
 import { AppRoute } from '../../const';
-//import FavoritesScreen from '../../pages/favorites-screen';
+import FavoritesScreen from '../../pages/favorites-screen';
 import LoginScreen from '../../pages/login-screen';
 import { Route, Routes } from 'react-router-dom';
 import MainScreen from '../../pages/main-screen';
@@ -8,10 +8,12 @@ import PropertyScreen from '../../pages/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useAppSelector } from '../../hooks';
+import PrivateRoute from '../private-route/private-route';
 
 function App(): JSX.Element {
 
   const { isDataLoaded } = useAppSelector(({ DATA }) => DATA);
+  const { authorizationStatus } = useAppSelector(({ USER }) => USER);
 
   if (!isDataLoaded) {
 
@@ -33,7 +35,19 @@ function App(): JSX.Element {
       <Route
         path={AppRoute.Login}
         element={
-          <LoginScreen />
+          <PrivateRoute
+            authorizationStatus={authorizationStatus}
+          >
+            <LoginScreen />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={AppRoute.Favorites}
+        element={
+          <PrivateRoute authorizationStatus={authorizationStatus}>
+            <FavoritesScreen/>
+          </PrivateRoute>
         }
       />
       <Route
