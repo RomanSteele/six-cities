@@ -21,6 +21,7 @@ export type Action = {
   favorites: Property[];
   isLoading: boolean;
   userComment: ReviewPost;
+  nearby: Property[];
 }
 
 export type User = {

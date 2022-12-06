@@ -13,6 +13,7 @@ const initialState: Action = {
     comment: '',
     rating: 0,
   },
+  nearby: [],
 };
 
 export const actionData = createSlice ({
@@ -39,7 +40,11 @@ export const actionData = createSlice ({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.userComment = action.payload;
     },
+    loadNearbyList: (state, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      state.nearby = action.payload;
+    },
   },
 });
 
-export const { updateCity, updateSortOrder, loadFavoritesList, changeLoadingStatus, addComment } = actionData.actions;
+export const { updateCity, updateSortOrder, loadFavoritesList, changeLoadingStatus, addComment, loadNearbyList } = actionData.actions;

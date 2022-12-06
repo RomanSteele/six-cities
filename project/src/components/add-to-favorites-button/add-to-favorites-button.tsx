@@ -18,7 +18,7 @@ function AddToMyFavoritesButton({ propertyId }: AddToMyFavoritesButtonProps): JS
   const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
   const [propertyFavoriteStatus, setpropertyFavoriteStatys] = useState(0);
 
-  const newFilmStatus = 1 - propertyFavoriteStatus;
+  const newPropStatus = 1 - propertyFavoriteStatus;
 
   const addToMyList = (id: number, status: number) => {
     store.dispatch(addFavoriteProperty({ id, status }));
@@ -38,7 +38,7 @@ function AddToMyFavoritesButton({ propertyId }: AddToMyFavoritesButtonProps): JS
 
   return (
     authorizationStatus === AuthorizationStatus.Authorized ?
-      <button onClick={() =>{ addToMyList(propertyId, newFilmStatus);}} className={`place-card__bookmark-button ${authorizationStatus === AuthorizationStatus.Authorized && propertyFavoriteStatus ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+      <button onClick={() =>{ addToMyList(propertyId, newPropStatus);}} className={`place-card__bookmark-button ${authorizationStatus === AuthorizationStatus.Authorized && propertyFavoriteStatus ? 'place-card__bookmark-button--active' : ''} button`} type="button">
         <svg className="place-card__bookmark-icon" width="18" height="19">
           <use xlinkHref="#icon-bookmark"></use>
         </svg>

@@ -12,7 +12,7 @@ import { UserLoginData } from '../types/user-login-data';
 import { dropToken, saveToken } from '../services/token';
 import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
 import { redirectToRoute } from './action';
-import { addComment, changeLoadingStatus, loadFavoritesList } from './slices/action-data/action-data';
+import { addComment, changeLoadingStatus, loadFavoritesList, loadNearbyList } from './slices/action-data/action-data';
 import { FavoriteProperty } from '../types/favorite-property.js';
 import { Review, ReviewPost, UserCommentData } from '../types/review.js';
 
@@ -139,6 +139,23 @@ export const addFavoriteProperty = createAsyncThunk<void, FavoriteProperty, {
   },
 );
 
+export const fetchNearbyList = createAsyncThunk<void, number | null, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  ApiType.DataFetchNearby,
+  async (id, { dispatch, extra: api }) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      const { data } = await api.get<Property[]>(`${APIRoute.Nearby}/${id}/nearby`);
+      dispatch(loadNearbyList(data));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
 
 export const postComment = createAsyncThunk<void, ReviewPost, {
   dispatch: AppDispatch;
@@ -152,7 +169,7 @@ export const postComment = createAsyncThunk<void, ReviewPost, {
       await api.post<UserCommentData>(`${APIRoute.Reviews}/${id}`, { comment, rating });
       dispatch(changeLoadingStatus(true));
       dispatch(addComment({ id, comment, rating }));
-      dispatch(redirectToRoute(`/films/${id}`));
+      //dispatch(redirectToRoute(`${AppRoute.Property}/${id}`));
     } catch (error) {
       console.log (error);
       dispatch(changeLoadingStatus(true));

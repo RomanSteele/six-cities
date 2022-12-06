@@ -4,20 +4,21 @@ import { useParams } from 'react-router-dom';
 import { AuthorizationStatus, STARS } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { store } from '../../store';
-import { postComment } from '../../store/api-actions';
-import { Review, ReviewPost } from '../../types/review';
+import { fetchChosenPropertyReviewsAction, postComment } from '../../store/api-actions';
+import { ReviewPost } from '../../types/review';
 
 
 type PostReviewFormProps = {
-  reviews: Review[];
+  propertyId: number;
 };
 
-function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
+
+function PostReviewForm({ propertyId }: PostReviewFormProps): JSX.Element {
 
   const { authorizationStatus } = useAppSelector(({ USER }) => USER);
 
   const enum CommentLength {
-    Min = 50,
+    Min = 10,
     Max = 300,
   }
 
@@ -57,6 +58,9 @@ function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
           rating: ratingData,
           comment: commentData,
         });
+      store.dispatch(fetchChosenPropertyReviewsAction(propertyId));
+      setCommentData('');
+      setRatingData(StarsStart.start);
     }
   };
 
@@ -68,7 +72,6 @@ function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
     );
   }, [ratingData, commentData, StarsStart.start, CommentLength.Min, CommentLength.Max]);
 
-
   return (
     AuthorizationStatus.Authorized === authorizationStatus ?
       <form onSubmit={handleSubmit} className="reviews__form form" action="#" method="post">
@@ -77,9 +80,9 @@ function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
 
           {STARS.map((item) => (
             <React.Fragment key={item.id}>
-              <input onClick={() => {hanldeMouseClick(item.id);}} key={item.id} className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
+              <input onClick={() => {hanldeMouseClick(item.id);}} key={item.id} className="form__rating-input visually-hidden" name="rating" value={item.id} id={`star-${item.id}`} type="radio"/>
               <label htmlFor={`star-${item.id}`} className="reviews__rating-label form__rating-label" title="perfect">
-                <svg className="form__star-image" width="37" height="33">
+                <svg className="form__star-image" width="37" height="33" style={item.id <= ratingData ? { fill: '#ff9000' } : { fill: '#c7c7c7' }}>
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
@@ -90,7 +93,7 @@ function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
         <textarea onChange={handleCommentAdd} value={commentData} disabled={!sendStatus} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
-                    To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+                    To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{CommentLength.Min} characters</b>.
           </p>
           <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled || !sendStatus}>Submit</button>
         </div>
@@ -102,3 +105,5 @@ function PostReviewForm({ reviews }: PostReviewFormProps): JSX.Element {
 
 
 export default PostReviewForm;
+
+

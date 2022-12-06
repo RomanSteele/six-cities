@@ -5,7 +5,7 @@ import MapInsert from '../components/map-insert/map-insert';
 import PropertiesList from '../components/properties-list/properties-list';
 import { updateSortOrder } from '../store/slices/action-data/action-data';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SortOptions } from '../const';
 
 
@@ -21,7 +21,7 @@ function MainScreen(): JSX.Element {
   const [isSortOpen, setIsSortOpen] = useState(false);
 
 
-  const propertiesToRender = () => {
+  const propertiesToRender = useCallback(() => {
     if (currentSortOption === SortOptions[1]) {
       return propertiesToShow.sort((a, b)=> a.price - b.price);
     }
@@ -34,7 +34,9 @@ function MainScreen(): JSX.Element {
     else {
       return propertiesToShow;
     }
-  };
+  },
+  [currentSortOption, propertiesToShow]
+  );
 
   return (
     <div className="page page--gray page--main">

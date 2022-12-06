@@ -22,7 +22,8 @@ export enum ApiType {
   UserLogin = 'user/login',
   UserLogout = 'user/logout',
   FavoriteListAdd = 'favorite/addProperty',
-  PostReview = 'property/postReview'
+  PostReview = 'property/postReview',
+  DataFetchNearby = 'data/fetchNearby'
 }
 
 export enum APIRoute {
@@ -31,7 +32,8 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Favorites = '/favorite',
-  Reviews = '/comments'
+  Reviews = '/comments',
+  Nearby = '/hotels'
 }
 
 export const Cities = [
