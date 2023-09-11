@@ -1,11 +1,14 @@
 import CardsList from "../../components/cards-list/cards-list";
 import CitiesSortingTabs from "../../components/cities-sorting/cities-sorting";
 import Header from "../../components/header/header";
+import MainEmptyList from "../../components/main-emtpy-list/main-empty-list";
 import MapComponent from "../../components/map-component/map-component";
 import OptionsSorting from "../../components/options-sorting/options-sorting";
 
 
 function MainPage ():JSX.Element {
+
+  const properties = []
 
   return (
     <div className="page page--gray page--main">
@@ -15,6 +18,12 @@ function MainPage ():JSX.Element {
     <main className="page__main page__main--index">
 
         <CitiesSortingTabs/>
+
+{properties.length < 1 ?
+
+  <MainEmptyList/>
+
+  :
 
       <div className="cities">
         <div className="cities__places-container container">
@@ -36,6 +45,7 @@ function MainPage ():JSX.Element {
           </div>
         </div>
       </div>
+      }
     </main>
   </div>
   )
