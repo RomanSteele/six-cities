@@ -4,11 +4,13 @@ import Header from "../../components/header/header";
 import MainEmptyList from "../../components/main-emtpy-list/main-empty-list";
 import MapComponent from "../../components/map-component/map-component";
 import OptionsSorting from "../../components/options-sorting/options-sorting";
+import { CardsListType } from "../../const";
+import { useAppSelector } from "../../hooks";
 
 
 function MainPage ():JSX.Element {
 
-  const properties = []
+  const { hotels } = useAppSelector(({DATA})=>DATA);
 
   return (
     <div className="page page--gray page--main">
@@ -19,8 +21,7 @@ function MainPage ():JSX.Element {
 
         <CitiesSortingTabs/>
 
-{properties.length < 1 ?
-
+{hotels.length < 1 ?
   <MainEmptyList/>
 
   :
@@ -34,7 +35,7 @@ function MainPage ():JSX.Element {
 
             <OptionsSorting/>
 
-            <CardsList properties={[]} listType={""}/>
+            <CardsList properties={hotels} listType={CardsListType[1].title}/>
 
           </section>
 

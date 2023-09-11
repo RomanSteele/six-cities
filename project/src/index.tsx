@@ -5,10 +5,13 @@ import App from './components/app/app';
 import browserHistory from './components/history-router/browser-history';
 import HistoryRouter from './components/history-router/history-router';
 import { store } from './store';
+import { fetchHotelsAction } from './store/api-actions';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+store.dispatch(fetchHotelsAction())
 
 root.render(
   <Provider store={store}>

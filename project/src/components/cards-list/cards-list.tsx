@@ -12,7 +12,7 @@ function CardsList ({properties, listType}: CardsListProps): JSX.Element{
   return(
     <div className={`${listType === CardsListType[0].title ? 'near-places__list' : 'cities__places-list tabs__content'} places__list`}>
       {properties.map((property) =>
-        <SinglePropertyCard property={property} listType={listType} key = {property.title}/>
+        <SinglePropertyCard property={property} listType={listType} key = {property.title.concat(property.id.toString())}/>
       )}
     </div>
   )

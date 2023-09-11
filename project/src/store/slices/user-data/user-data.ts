@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserData } from "../../../types/state";
 import { AuthorizationStatus, NameSpace } from "../../../const";
+import { initialUserData } from "../../../helpers";
 
 const initialState: UserData = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  userLoginData: {
-    avatarUrl: '',
-    email: '',
-    id: 0,
-    name: '',
-    token: '',
-  },
+  userLoginData: initialUserData,
 };
 
 export const userData = createSlice ({

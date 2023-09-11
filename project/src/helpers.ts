@@ -1,4 +1,5 @@
 import { Property } from "./types/property";
+import { UserLoginData } from "./types/user-login-data";
 
 export const initialProperty:Property =
 {
@@ -39,3 +40,13 @@ export const initialProperty:Property =
   title: '',
   type: ''
   }
+
+  export const initialUserData:UserLoginData = {
+    avatarUrl: '',
+    email: '',
+    id: 0,
+    name: '',
+    token: '',
+  }
+
+

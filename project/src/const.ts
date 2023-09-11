@@ -1,3 +1,4 @@
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -6,6 +7,14 @@ export enum AppRoute {
   AddReview = '/comments/:id',
   Room = '/hotels/:id',
   NotFound='*',
+}
+
+export enum APIRoute {
+  Hotels = '/hotels',
+}
+
+export enum APIType {
+  DataFetchHotels = 'data/fetchHotels',
 }
 
 export enum AuthorizationStatus {
@@ -24,3 +33,4 @@ export const CardsListType = [
     {title: 'nearPlaces'},
     {title: 'citiesPlaces'},
 ];
+
