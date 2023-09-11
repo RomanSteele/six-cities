@@ -25,7 +25,7 @@ function MainPage ():JSX.Element {
 
             <OptionsSorting/>
 
-            <CardsList properties={[]}/>
+            <CardsList properties={[]} listType={""}/>
 
           </section>
 

@@ -1,16 +1,18 @@
+import { CardsListType } from "../../const";
 import { Property } from "../../types/property";
 import SinglePropertyCard from "../single-property-card/single-property-card";
 
 type CardsListProps={
-  properties: Property[];
+  properties: Property[],
+  listType: string,
 }
 
-function CardsList ({properties}: CardsListProps): JSX.Element{
+function CardsList ({properties, listType}: CardsListProps): JSX.Element{
 
   return(
-    <div className="cities__places-list places__list tabs__content">
+    <div className={`${listType === CardsListType[0].title ? 'near-places__list' : 'cities__places-list tabs__content'} places__list`}>
       {properties.map((property) =>
-        <SinglePropertyCard property={property} key = {property.title}/>
+        <SinglePropertyCard property={property} listType={listType} key = {property.title}/>
       )}
     </div>
   )

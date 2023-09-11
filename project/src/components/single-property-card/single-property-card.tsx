@@ -1,20 +1,24 @@
+import { CardsListType } from "../../const";
 import { Property } from "../../types/property";
 
 type SinglePropertyCardProps = {
-  property: Property;
+  property: Property,
+  listType: string,
 }
 
-function SinglePropertyCard ({property}: SinglePropertyCardProps): JSX.Element {
+function SinglePropertyCard ({property, listType}: SinglePropertyCardProps): JSX.Element {
 
   const {title} = property;
+  listType
 
   return(
 
-    <article className="cities__place-card place-card">
+
+    <article className={`${listType === CardsListType[0].title ? 'near-places__card' : 'cities__place-card'} place-card`}>
       <div className="place-card__mark">
         <span>Premium</span>
          </div>
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${listType === CardsListType[0].title ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
           <a href="#">
             <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image"/>
           </a>
