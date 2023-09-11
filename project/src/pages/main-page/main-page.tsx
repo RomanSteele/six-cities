@@ -11,6 +11,9 @@ import { useAppSelector } from "../../hooks";
 function MainPage ():JSX.Element {
 
   const { hotels } = useAppSelector(({DATA})=>DATA);
+  const { isCurrentSortCity } = useAppSelector(({ACTION})=>ACTION);
+
+  const hotelsToRender = hotels.filter((hotel)=> hotel.city.name === isCurrentSortCity)
 
   return (
     <div className="page page--gray page--main">
@@ -35,7 +38,7 @@ function MainPage ():JSX.Element {
 
             <OptionsSorting/>
 
-            <CardsList properties={hotels} listType={CardsListType[1].title}/>
+            <CardsList properties={hotelsToRender} listType={CardsListType[1].title}/>
 
           </section>
 

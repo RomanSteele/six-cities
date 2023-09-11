@@ -34,3 +34,11 @@ export const CardsListType = [
     {title: 'citiesPlaces'},
 ];
 
+export const Cities = ['Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'];
+
+

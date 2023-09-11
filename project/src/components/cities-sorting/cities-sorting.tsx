@@ -1,4 +1,19 @@
+
+import { Cities } from "../../const";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { updateCurrentSortCity } from "../../store/slices/action-data/action-data";
+
 function CitiesSortingTabs (): JSX.Element {
+
+const dispatch = useAppDispatch();
+const { isCurrentSortCity} = useAppSelector(({ACTION})=>ACTION)
+
+const handleCityClick = (city: string) => () => {
+  dispatch(updateCurrentSortCity(city));
+  window.scrollTo(0, 0);
+
+};
+
 
   return(
     <>
@@ -6,36 +21,15 @@ function CitiesSortingTabs (): JSX.Element {
     <div className="tabs">
     <section className="locations container">
     <ul className="locations__list tabs__list">
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Paris</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Cologne</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Brussels</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item tabs__item--active">
-          <span>Amsterdam</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Hamburg</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Dusseldorf</span>
-        </a>
-      </li>
+
+      {Cities.map((city)=>
+      <li className="locations__item"  onClick={handleCityClick(city)} key={city}>
+      <a className={`${city === isCurrentSortCity ? 'tabs__item--active ' : ''}locations__item-link tabs__item`} href="#">
+        <span>{city}</span>
+      </a>
+    </li>
+      )}
+
     </ul>
   </section>
   </div>

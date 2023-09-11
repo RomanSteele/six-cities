@@ -3,6 +3,8 @@ import { NameSpace } from '../../../const';
 
 import { ActionData } from '../../../types/state';
 
+const startSortCity = 'Paris';
+
 
 const initialState:ActionData  = {
   isFavorite: false,
@@ -10,7 +12,8 @@ const initialState:ActionData  = {
     comment: '',
     rating: 0
   },
-  isLoading: false
+  isLoading: false,
+  isCurrentSortCity: startSortCity,
 };
 
 export const actionData = createSlice ({
@@ -19,6 +22,9 @@ export const actionData = createSlice ({
   reducers: {
     updateIsFavorite: (state, action) => {
       state.isFavorite = action.payload;
+    },
+    updateCurrentSortCity: (state,action) => {
+      state.isCurrentSortCity = action.payload
     },
     addReview: (state, action) => {
       state.addReview = action.payload;
@@ -30,4 +36,4 @@ export const actionData = createSlice ({
   },
 });
 
-export const { addReview , updateIsFavorite, changeLoadingStatus } = actionData.actions;
+export const { addReview , updateIsFavorite, changeLoadingStatus, updateCurrentSortCity } = actionData.actions;
