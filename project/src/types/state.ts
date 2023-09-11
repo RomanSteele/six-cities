@@ -1,6 +1,11 @@
+import { store } from "../store";
 import { Property } from "./property";
 import { Review } from "./review";
 import { UserLoginData } from "./user-login-data";
+
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
 
 export type ActionData = {
   isFavorite: boolean,

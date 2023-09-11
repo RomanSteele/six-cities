@@ -1,3 +1,13 @@
+export enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  AddToFavorites = '/favorite/:id/:status',
+  AddReview = '/comments/:id',
+  Room = '/hotels/:id',
+  NotFound='*',
+}
+
 export enum AuthorizationStatus {
   Authorized = 'AUTH',
   NotAuthorized = 'NO_AUTH',
