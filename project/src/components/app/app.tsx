@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { AppRoute, AuthorizationStatus } from "../../const";
-import { initialProperty } from "../../helpers";
 import FavoritesPage from "../../pages/favorites-page/favorites-page";
 import MainPage from "../../pages/main-page/main-page";
 import NotFoundPage from "../../pages/not-found-page/not-found-page";
@@ -20,7 +19,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<RoomPage property={initialProperty} />}
+          element={<RoomPage  />}
         />
         <Route
           path={AppRoute.NotFound}
