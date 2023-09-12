@@ -12,6 +12,7 @@ export type Review = {
 }
 
 export type addReviewType = {
+    id:number;
     comment: string,
     rating: number
 }

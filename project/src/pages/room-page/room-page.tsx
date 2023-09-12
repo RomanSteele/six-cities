@@ -22,8 +22,6 @@ function RoomPage (): JSX.Element {
   const imagesToRender = images.slice(0,6);
   const width = `${Math.round(rating) * 20}%`;
 
-  console.log(width)
-
 
   useEffect (() => {
     store.dispatch(fetchCurrentHotelAction(hotelId))
@@ -124,8 +122,10 @@ function RoomPage (): JSX.Element {
                   </p>
                 </div>
               </div>
-              <RoomReviews reviews={reviews}/>
+
+              <RoomReviews reviews={reviews} hotelId={hotelId}/>
             </div>
+
           </div>
           <section className="property__map map"></section>
         </section>

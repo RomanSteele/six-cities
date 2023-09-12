@@ -4,10 +4,10 @@ import {APIRoute, APIType} from '../const';
 import {AppDispatch, State} from '../types/state';
 
 
-import { changeLoadingStatus } from './slices/action-data/action-data';
+import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
 import { loadCurrentHotel, loadHotels, loadReviews  } from './slices/app-data/app-data';
 import { Property } from '../types/property';
-import { Review } from '../types/review';
+import { addReviewType, Review } from '../types/review';
 
 
 
@@ -56,3 +56,20 @@ export const fetchReviewsAction = createAsyncThunk<void, number, {
     dispatch(changeLoadingStatus(false));
   },
 );
+
+export const postReview = createAsyncThunk<void, addReviewType, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+
+}>(
+  APIType.ActionPostReview,
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    dispatch(changeLoadingStatus(true));
+    const {data} = await api.post<addReviewType>(APIRoute.Reviews.replace(':id', id.toString()), {comment, rating});
+    dispatch(addReview(data));
+    dispatch(fetchReviewsAction(id))
+    dispatch(changeLoadingStatus(false));
+  },
+);
+

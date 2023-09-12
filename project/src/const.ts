@@ -18,7 +18,8 @@ export enum APIRoute {
 export enum APIType {
   DataFetchHotels = 'data/fetchHotels',
   DataFetchRoom = 'data/fetchRoom',
-  DataFetchReviews = 'data/fetchReviews'
+  DataFetchReviews = 'data/fetchReviews',
+  ActionPostReview = 'action/postReview'
 }
 
 export enum AuthorizationStatus {
@@ -38,11 +39,29 @@ export const CardsListType = [
     {title: 'citiesPlaces'},
 ];
 
-export const Cities = ['Paris',
+export const Cities = [
+  'Paris',
   'Cologne',
   'Brussels',
   'Amsterdam',
   'Hamburg',
   'Dusseldorf'];
 
+  export const STARS= [
+  {id:5,
+    title: 'perfect'
+  },
+  {id:4,
+    title: 'good'
+  },
+  {id:3,
+    title: 'not bad'
+  },
+  {id:2,
+    title: 'badly'
+  },
+  {id:1,
+    title: 'terribly'
+  },
+];
 
