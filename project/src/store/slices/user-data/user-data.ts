@@ -4,7 +4,7 @@ import { AuthorizationStatus, NameSpace } from "../../../const";
 import { initialUserData } from "../../../helpers";
 
 const initialState: UserData = {
-  authorizationStatus: AuthorizationStatus.Authorized,
+  authorizationStatus: AuthorizationStatus.Unknown,
   userLoginData: initialUserData,
 };
 

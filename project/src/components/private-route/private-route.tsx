@@ -10,9 +10,9 @@ type PrivateRouteProps = {
 function PrivateRoute( props: PrivateRouteProps ): JSX.Element{
   const {authorizationStatus, children} = props;
 
+  console.log(authorizationStatus)
 
   if (children.type !== SignInPage){
-
 
     return (
       authorizationStatus === AuthorizationStatus.Authorized
@@ -26,6 +26,7 @@ function PrivateRoute( props: PrivateRouteProps ): JSX.Element{
       ? <Navigate to={AppRoute.Main} />
       : children
   );
+
 }
 
 

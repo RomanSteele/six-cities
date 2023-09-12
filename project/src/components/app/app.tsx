@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { AppRoute, AuthorizationStatus } from "../../const";
+import { AppRoute } from "../../const";
+import { useAppSelector } from "../../hooks";
 import FavoritesPage from "../../pages/favorites-page/favorites-page";
 import MainPage from "../../pages/main-page/main-page";
 import NotFoundPage from "../../pages/not-found-page/not-found-page";
@@ -10,6 +11,8 @@ import PrivateRoute from "../private-route/private-route";
 
 
 function App(): JSX.Element {
+
+  const {authorizationStatus} = useAppSelector(({USER})=>USER)
 
   return (
       <Routes>
@@ -28,7 +31,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus = {AuthorizationStatus.Authorized} >
+            <PrivateRoute authorizationStatus = {authorizationStatus} >
               <FavoritesPage />
             </PrivateRoute>
         }
@@ -36,7 +39,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Login}
           element= {
-            <PrivateRoute authorizationStatus = {AuthorizationStatus.NotAuthorized}>
+            <PrivateRoute authorizationStatus = {authorizationStatus}>
           <SignInPage />
           </PrivateRoute>
         }

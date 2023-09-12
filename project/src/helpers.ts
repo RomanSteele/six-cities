@@ -1,5 +1,5 @@
 import { Property } from "./types/property";
-import { UserLoginData } from "./types/user-login-data";
+import { UserLoginDataResponse } from "./types/user-login-data";
 
 export const initialProperty:Property =
 {
@@ -41,7 +41,7 @@ export const initialProperty:Property =
   type: ''
   }
 
-  export const initialUserData:UserLoginData = {
+  export const initialUserData:UserLoginDataResponse = {
     avatarUrl: '',
     email: '',
     id: 0,
@@ -49,4 +49,12 @@ export const initialProperty:Property =
     token: '',
   }
 
+  export const validateEmail = (email: string): boolean => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return email ? emailPattern.test(email) : false;
+  };
 
+  export const validatePassword = (password: string): boolean => {
+    const passwordPattern = /^.*$/;
+    return password ? passwordPattern.test(password) : false;
+  };

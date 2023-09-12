@@ -1,7 +1,7 @@
 import { store } from "../store";
 import { Property } from "./property";
 import { Review } from "./review";
-import { UserLoginData } from "./user-login-data";
+import { UserLoginDataResponse } from "./user-login-data";
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -28,7 +28,7 @@ export type AppData = {
 
 export type UserData = {
   authorizationStatus: string,
-  userLoginData: UserLoginData
+  userLoginData: UserLoginDataResponse
 };
 
 

@@ -12,14 +12,18 @@ export enum AppRoute {
 export enum APIRoute {
   Hotels = '/hotels',
   Room = '/hotels/:id',
-  Reviews ='/comments/:id'
+  Reviews ='/comments/:id',
+  Login='/login',
+  Logout='/logout'
 }
 
 export enum APIType {
   DataFetchHotels = 'data/fetchHotels',
   DataFetchRoom = 'data/fetchRoom',
   DataFetchReviews = 'data/fetchReviews',
-  ActionPostReview = 'action/postReview'
+  ActionPostReview = 'action/postReview',
+  UserPostLogin = 'user/login',
+  UserPostLogout = 'user/logout'
 }
 
 export enum AuthorizationStatus {
