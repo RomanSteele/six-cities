@@ -14,7 +14,6 @@ const handleCityClick = (city: string) => () => {
 
 };
 
-
   return(
     <>
     <h1 className="visually-hidden">Cities</h1>

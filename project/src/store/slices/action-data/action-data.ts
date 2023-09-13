@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../../const';
+import { NameSpace, SortingOptions } from '../../../const';
 
 import { ActionData } from '../../../types/state';
 
@@ -14,6 +14,7 @@ const initialState:ActionData  = {
   },
   isLoading: false,
   isCurrentSortCity: startSortCity,
+  isCurrentSortingOption: SortingOptions[0]
 };
 
 export const actionData = createSlice ({
@@ -26,6 +27,9 @@ export const actionData = createSlice ({
     updateCurrentSortCity: (state,action) => {
       state.isCurrentSortCity = action.payload
     },
+    updateSortingOption: (state,action) => {
+      state.isCurrentSortingOption = action.payload
+    },
     addReview: (state, action) => {
       state.addReview = action.payload;
     },
@@ -36,4 +40,4 @@ export const actionData = createSlice ({
   },
 });
 
-export const { addReview , updateIsFavorite, changeLoadingStatus, updateCurrentSortCity } = actionData.actions;
+export const { addReview , updateIsFavorite, changeLoadingStatus, updateCurrentSortCity, updateSortingOption } = actionData.actions;

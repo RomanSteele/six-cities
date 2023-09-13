@@ -1,3 +1,4 @@
+import { SortingOptions } from "./const";
 import { Property } from "./types/property";
 import { UserLoginDataResponse } from "./types/user-login-data";
 
@@ -58,3 +59,22 @@ export const initialProperty:Property =
     const passwordPattern = /^.*$/;
     return password ? passwordPattern.test(password) : false;
   };
+
+
+  export const sortPropertiesByOption = (option: string, properties: Property[]):Property[] | [] => {
+    if(properties && option){
+
+      if(option === SortingOptions[0])
+    { return properties }
+
+    if(option === SortingOptions[1])
+    { return properties.slice().sort((a, b) => a.price - b.price)}
+
+    if(option === SortingOptions[2])
+    { return properties.slice().sort((a, b) => b.price - a.price)}
+
+    if(option === SortingOptions[3])
+    { return properties.slice().sort((a, b) => b.rating - a.rating)}
+    }
+return []
+  }

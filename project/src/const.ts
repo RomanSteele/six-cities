@@ -49,7 +49,16 @@ export const Cities = [
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf'];
+  'Dusseldorf'
+];
+
+  export const SortingOptions =[
+   'Popular',
+   'Price: low to high',
+   'Price: high to low',
+   'Top rated first',
+  ]
+
 
   export const STARS= [
   {id:5,

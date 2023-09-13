@@ -13,8 +13,6 @@ import { loadUserData, requireAuthorization } from './slices/user-data/user-data
 import { dropToken, saveToken } from '../services/token';
 
 
-
-
 export const fetchHotelsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;

@@ -1,19 +1,32 @@
+import { useEffect } from "react";
 import CardsList from "../../components/cards-list/cards-list";
 import CitiesSortingTabs from "../../components/cities-sorting/cities-sorting";
 import Header from "../../components/header/header";
 import MainEmptyList from "../../components/main-emtpy-list/main-empty-list";
 import MapComponent from "../../components/map-component/map-component";
 import OptionsSorting from "../../components/options-sorting/options-sorting";
-import { CardsListType } from "../../const";
+import { CardsListType, Cities } from "../../const";
+import { sortPropertiesByOption } from "../../helpers";
 import { useAppSelector } from "../../hooks";
+import { store } from "../../store";
+import { updateCurrentSortCity } from "../../store/slices/action-data/action-data";
 
 
 function MainPage ():JSX.Element {
 
   const { hotels } = useAppSelector(({DATA})=>DATA);
-  const { isCurrentSortCity } = useAppSelector(({ACTION})=>ACTION);
+  const { isCurrentSortCity, isCurrentSortingOption } = useAppSelector(({ACTION})=>ACTION);
 
-  const hotelsToRender = hotels.filter((hotel)=> hotel.city.name === isCurrentSortCity)
+
+  const hotelsByCity = hotels.filter((hotel)=> hotel.city.name === isCurrentSortCity)
+
+  const hotelsToRender = sortPropertiesByOption(isCurrentSortingOption, hotelsByCity);
+
+
+  useEffect(()=>{
+    store.dispatch(updateCurrentSortCity(Cities[0]));
+  },[])
+
 
   return (
     <div className="page page--gray page--main">
@@ -24,7 +37,7 @@ function MainPage ():JSX.Element {
 
         <CitiesSortingTabs/>
 
-{hotels.length < 1 ?
+{hotelsToRender.length < 1 ?
   <MainEmptyList/>
 
   :
@@ -34,7 +47,7 @@ function MainPage ():JSX.Element {
 
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{`${hotelsToRender.length} ${hotelsToRender.length === 1 ? 'place' : 'places' } to stay in ${isCurrentSortCity}`}</b>
 
             <OptionsSorting/>
 

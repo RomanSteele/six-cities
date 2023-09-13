@@ -14,7 +14,8 @@ export type ActionData = {
     rating: number
   },
   isLoading:boolean,
-  isCurrentSortCity: string
+  isCurrentSortCity: string,
+  isCurrentSortingOption: string
 };
 
 export type AppData = {
