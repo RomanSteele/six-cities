@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CardsList from "../../components/cards-list/cards-list";
 import Header from "../../components/header/header";
+import MapComponent from "../../components/map-component/map-component";
 import RoomReviews from "../../components/room-reviews/room-reviews";
-import { AppRoute, AuthorizationStatus } from "../../const";
+import Spinner from "../../components/spinner/spinner";
+import { AppRoute, AuthorizationStatus, RoomMapSize } from "../../const";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
-import { changeFavoriteStatus, fetchCurrentHotelAction, fetchReviewsAction } from "../../store/api-actions";
+import { changeFavoriteStatus, fetchCurrentHotelAction, fetchNearbyHotelsAction, fetchReviewsAction } from "../../store/api-actions";
 
 
 
@@ -17,9 +19,10 @@ function RoomPage (): JSX.Element {
   const navigate = useNavigate();
 
 
-  const { currentHotel, reviews, favoriteHotels } = useAppSelector(({DATA})=>DATA);
+  const { currentHotel, reviews, favoriteHotels, nearbyHotels } = useAppSelector(({DATA})=>DATA);
   const { authorizationStatus } = useAppSelector(({USER})=>USER);
-  const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite } = currentHotel;
+  const { isLoading } = useAppSelector(({ACTION})=>ACTION)
+  const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite, city } = currentHotel;
 
 
   const imagesToRender = images.slice(0,6);
@@ -42,10 +45,17 @@ function RoomPage (): JSX.Element {
 
 
   useEffect (() => {
-    store.dispatch(fetchCurrentHotelAction(hotelId))
-    store.dispatch(fetchReviewsAction(hotelId))
+    store.dispatch(fetchCurrentHotelAction(hotelId));
+    store.dispatch(fetchReviewsAction(hotelId));
+    store.dispatch(fetchNearbyHotelsAction(hotelId));
   }, [params.id]);
 
+
+  if (isLoading ) {
+    return (
+      <Spinner loading={isLoading} />
+    );
+  }
 
 
   return(
@@ -145,13 +155,15 @@ function RoomPage (): JSX.Element {
             </div>
 
           </div>
-          <section className="property__map map"></section>
+
+          <MapComponent properties={nearbyHotels} currentCity={city.name} size={RoomMapSize}/>
         </section>
+
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-        <CardsList properties={[]} listType={""}/>
+        <CardsList properties={nearbyHotels} listType={""}/>
 
           </section>
         </div>

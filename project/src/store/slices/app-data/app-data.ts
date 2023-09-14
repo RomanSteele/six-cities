@@ -6,7 +6,7 @@ import { initialProperty } from "../../../helpers";
 const initialState:AppData  = {
   hotels: [],
   currentHotel: initialProperty,
-  nearbyHotels: initialProperty,
+  nearbyHotels: [initialProperty],
   favoriteHotels: [],
   reviews: [],
   error: null,

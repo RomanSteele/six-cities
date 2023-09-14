@@ -21,7 +21,7 @@ export type ActionData = {
 export type AppData = {
   hotels: Property[],
   currentHotel: Property,
-  nearbyHotels: Property,
+  nearbyHotels: Property[],
   favoriteHotels: Property[],
   reviews: Review[],
   error: string | null,

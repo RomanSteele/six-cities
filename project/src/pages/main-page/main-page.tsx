@@ -5,7 +5,8 @@ import Header from "../../components/header/header";
 import MainEmptyList from "../../components/main-emtpy-list/main-empty-list";
 import MapComponent from "../../components/map-component/map-component";
 import OptionsSorting from "../../components/options-sorting/options-sorting";
-import { CardsListType, Cities } from "../../const";
+import Spinner from "../../components/spinner/spinner";
+import { CardsListType, Cities, MainMapSize } from "../../const";
 import { sortPropertiesByOption } from "../../helpers";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
@@ -16,11 +17,9 @@ import { updateCurrentSortCity } from "../../store/slices/action-data/action-dat
 function MainPage ():JSX.Element {
 
   const { hotels, favoriteHotels } = useAppSelector(({DATA})=>DATA);
-  const { isCurrentSortCity, isCurrentSortingOption } = useAppSelector(({ACTION})=>ACTION);
-
+  const { isCurrentSortCity, isCurrentSortingOption, isLoading } = useAppSelector(({ACTION})=>ACTION);
 
   const hotelsByCity = hotels.filter((hotel)=> hotel.city.name === isCurrentSortCity)
-
   const hotelsToRender = sortPropertiesByOption(isCurrentSortingOption, hotelsByCity);
 
 
@@ -33,6 +32,13 @@ function MainPage ():JSX.Element {
   },[])
 
 
+  if (isLoading ) {
+    return (
+      <Spinner loading={isLoading} />
+    );
+  }
+
+
 
   return (
     <div className="page page--gray page--main">
@@ -43,11 +49,10 @@ function MainPage ():JSX.Element {
 
         <CitiesSorting/>
 
-{hotelsToRender.length < 1 ?
-  <MainEmptyList/>
+    {hotelsToRender.length < 1 ?
 
+      <MainEmptyList/>
   :
-
       <div className="cities">
         <div className="cities__places-container container">
 
@@ -63,7 +68,7 @@ function MainPage ():JSX.Element {
 
           <div className="cities__right-section">
 
-            <MapComponent/>
+            <MapComponent properties={hotelsToRender} currentCity={isCurrentSortCity} size = {MainMapSize}/>
 
           </div>
         </div>

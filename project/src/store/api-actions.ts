@@ -5,7 +5,7 @@ import {AppDispatch, State} from '../types/state';
 
 
 import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
-import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadReviews  } from './slices/app-data/app-data';
+import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels, loadReviews  } from './slices/app-data/app-data';
 import { Property } from '../types/property';
 import { addReviewType, Review } from '../types/review';
 import { UserLogin, UserLoginDataResponse } from '../types/user-login-data';
@@ -39,6 +39,21 @@ export const fetchFavoriteHotelsAction = createAsyncThunk<void, undefined, {
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property[]>(APIRoute.Favorite);
     dispatch(loadFavoriteHotels(data));
+    dispatch(changeLoadingStatus(false));
+  },
+);
+
+export const fetchNearbyHotelsAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+
+}>(
+  APIType.DataFetchNearbyHotels,
+  async (id, {dispatch, extra: api}) => {
+    dispatch(changeLoadingStatus(true));
+    const {data} = await api.get<Property[]>(APIRoute.NearbyHotels.replace(':id', id.toString()));
+    dispatch(loadNearbyHotels(data));
     dispatch(changeLoadingStatus(false));
   },
 );
@@ -149,9 +164,8 @@ export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:nu
   APIType.ActionPostReview,
   async ({id, status}, {dispatch, extra: api}) => {
     dispatch(changeLoadingStatus(true));
-    const {data} = await api.post(`${APIRoute.Favorite}/${id}/${status}`);
-    console.log(data);
-    dispatch(fetchFavoriteHotelsAction())
+    await api.post(`${APIRoute.Favorite}/${id}/${status}`);
+    dispatch(fetchFavoriteHotelsAction());
     dispatch(changeLoadingStatus(false));
   },
 );
