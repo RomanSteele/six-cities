@@ -14,11 +14,14 @@ export enum APIRoute {
   Room = '/hotels/:id',
   Reviews ='/comments/:id',
   Login='/login',
-  Logout='/logout'
+  Logout='/logout',
+  Favorite='/favorite',
+  FavoriteChange = '/favorite/:id/:status'
 }
 
 export enum APIType {
   DataFetchHotels = 'data/fetchHotels',
+  DataFetchFavoriteHotels = 'data/fetchFavoriteHotels',
   DataFetchRoom = 'data/fetchRoom',
   DataFetchReviews = 'data/fetchReviews',
   ActionPostReview = 'action/postReview',

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardsList from "../../components/cards-list/cards-list";
 import Header from "../../components/header/header";
 import RoomReviews from "../../components/room-reviews/room-reviews";
+import { AppRoute, AuthorizationStatus } from "../../const";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
-import { fetchCurrentHotelAction, fetchReviewsAction } from "../../store/api-actions";
+import { changeFavoriteStatus, fetchCurrentHotelAction, fetchReviewsAction } from "../../store/api-actions";
 
 
 
@@ -13,14 +14,31 @@ function RoomPage (): JSX.Element {
 
   const params = useParams();
   const hotelId = Number(params.id);
+  const navigate = useNavigate();
 
 
-  const { currentHotel, reviews } = useAppSelector(({DATA})=>DATA);
-  const { title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description } = currentHotel;
+  const { currentHotel, reviews, favoriteHotels } = useAppSelector(({DATA})=>DATA);
+  const { authorizationStatus } = useAppSelector(({USER})=>USER);
+  const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite } = currentHotel;
 
 
   const imagesToRender = images.slice(0,6);
   const width = `${Math.round(rating) * 20}%`;
+
+  const status = isFavorite ? 0 : 1;
+
+  const favoritesButtonClickHandle =() =>{
+    if(authorizationStatus === AuthorizationStatus.Authorized){
+    store.dispatch(changeFavoriteStatus({id, status}))
+    }
+    else {
+      navigate(AppRoute.Login)
+    }
+  }
+
+  useEffect(()=> {
+    store.dispatch(fetchCurrentHotelAction(id))
+  },[favoriteHotels])
 
 
   useEffect (() => {
@@ -62,7 +80,7 @@ function RoomPage (): JSX.Element {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button onClick={favoritesButtonClickHandle} className={`${isFavorite ? 'property__bookmark-button--active' : ''} property__bookmark-button button`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>

@@ -5,7 +5,7 @@ import {AppDispatch, State} from '../types/state';
 
 
 import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
-import { loadCurrentHotel, loadHotels, loadReviews  } from './slices/app-data/app-data';
+import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadReviews  } from './slices/app-data/app-data';
 import { Property } from '../types/property';
 import { addReviewType, Review } from '../types/review';
 import { UserLogin, UserLoginDataResponse } from '../types/user-login-data';
@@ -24,6 +24,21 @@ export const fetchHotelsAction = createAsyncThunk<void, undefined, {
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property[]>(APIRoute.Hotels);
     dispatch(loadHotels(data));
+    dispatch(changeLoadingStatus(false));
+  },
+);
+
+export const fetchFavoriteHotelsAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+
+}>(
+  APIType.DataFetchFavoriteHotels,
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(changeLoadingStatus(true));
+    const {data} = await api.get<Property[]>(APIRoute.Favorite);
+    dispatch(loadFavoriteHotels(data));
     dispatch(changeLoadingStatus(false));
   },
 );
@@ -87,6 +102,7 @@ export const loginAction = createAsyncThunk<void, UserLogin, {
     const {data} = await api.post<UserLoginDataResponse>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(loadUserData(data));
+    fetchFavoriteHotelsAction();
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     dispatch(changeLoadingStatus(false));
   },
@@ -120,6 +136,22 @@ export const checkAuthorization = createAsyncThunk<void, undefined, {
     const { data } = await api.get<UserLoginDataResponse>(APIRoute.Login);
     dispatch(loadUserData(data));
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
+    dispatch(changeLoadingStatus(false));
+  },
+);
+
+export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:number}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+
+}>(
+  APIType.ActionPostReview,
+  async ({id, status}, {dispatch, extra: api}) => {
+    dispatch(changeLoadingStatus(true));
+    const {data} = await api.post(`${APIRoute.Favorite}/${id}/${status}`);
+    console.log(data);
+    dispatch(fetchFavoriteHotelsAction())
     dispatch(changeLoadingStatus(false));
   },
 );

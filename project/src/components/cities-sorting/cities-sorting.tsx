@@ -3,15 +3,13 @@ import { Cities } from "../../const";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { updateCurrentSortCity } from "../../store/slices/action-data/action-data";
 
-function CitiesSortingTabs (): JSX.Element {
+function CitiesSorting (): JSX.Element {
 
 const dispatch = useAppDispatch();
 const { isCurrentSortCity} = useAppSelector(({ACTION})=>ACTION)
 
 const handleCityClick = (city: string) => () => {
   dispatch(updateCurrentSortCity(city));
-  window.scrollTo(0, 0);
-
 };
 
   return(
@@ -37,4 +35,4 @@ const handleCityClick = (city: string) => () => {
 
 }
 
-export default CitiesSortingTabs;
+export default CitiesSorting;

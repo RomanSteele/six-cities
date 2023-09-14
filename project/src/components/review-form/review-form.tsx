@@ -25,6 +25,7 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
   const [ratingData, setRatingData] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
+
   const hanldeMouseClick = (id: number) => {
     setRatingData(id);
   };
@@ -41,7 +42,6 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
     if ( !isDisabled ) {
       sendOnSubmit(
         {
@@ -49,11 +49,12 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
           rating: ratingData,
           comment: commentData,
         });
+        setRatingData(0);
+        setCommentData('');
     }
   };
 
   useEffect (() => {
-
     setIsDisabled(
       ratingData === StarsStart.start ||
       commentData.length < CommentLength.Min ||
@@ -71,7 +72,8 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
       {STARS.map((star)=>
 
         <React.Fragment key={star.id}>
-          <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-stars"`} type="radio" /><label htmlFor={`${star.id}-stars"`} onClick={() => { hanldeMouseClick(star.id); } } className="reviews__rating-label form__rating-label" title={star.title}>
+          <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-stars`} type="radio" />
+          <label htmlFor={`${star.id}-stars`} onClick={() => { hanldeMouseClick(star.id); } } className="reviews__rating-label form__rating-label" title={star.title}>
           <svg className="form__star-image" width="37" height="33">
             <use xlinkHref="#icon-star"></use>
           </svg>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import CardsList from "../../components/cards-list/cards-list";
-import CitiesSortingTabs from "../../components/cities-sorting/cities-sorting";
+import CitiesSorting from "../../components/cities-sorting/cities-sorting";
 import Header from "../../components/header/header";
 import MainEmptyList from "../../components/main-emtpy-list/main-empty-list";
 import MapComponent from "../../components/map-component/map-component";
@@ -9,12 +9,13 @@ import { CardsListType, Cities } from "../../const";
 import { sortPropertiesByOption } from "../../helpers";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
+import { fetchHotelsAction } from "../../store/api-actions";
 import { updateCurrentSortCity } from "../../store/slices/action-data/action-data";
 
 
 function MainPage ():JSX.Element {
 
-  const { hotels } = useAppSelector(({DATA})=>DATA);
+  const { hotels, favoriteHotels } = useAppSelector(({DATA})=>DATA);
   const { isCurrentSortCity, isCurrentSortingOption } = useAppSelector(({ACTION})=>ACTION);
 
 
@@ -24,8 +25,13 @@ function MainPage ():JSX.Element {
 
 
   useEffect(()=>{
+    store.dispatch(fetchHotelsAction())
+  },[favoriteHotels])
+
+  useEffect(()=>{
     store.dispatch(updateCurrentSortCity(Cities[0]));
   },[])
+
 
 
   return (
@@ -35,7 +41,7 @@ function MainPage ():JSX.Element {
 
     <main className="page__main page__main--index">
 
-        <CitiesSortingTabs/>
+        <CitiesSorting/>
 
 {hotelsToRender.length < 1 ?
   <MainEmptyList/>
