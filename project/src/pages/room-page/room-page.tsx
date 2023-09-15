@@ -28,6 +28,11 @@ function RoomPage (): JSX.Element {
 
   const status = isFavorite ? 0 : 1;
 
+  const nearbyHotelsPlusCurrent = [...nearbyHotels, currentHotel];
+
+  const capitalLetterType = type.charAt(0).toUpperCase() + type.slice(1);
+
+
   const favoritesButtonClickHandle =() =>{
     if(authorizationStatus === AuthorizationStatus.Authorized){
     store.dispatch(changeFavoriteStatus({id, status}))
@@ -77,11 +82,10 @@ function RoomPage (): JSX.Element {
           <div className="property__container container">
             <div className="property__wrapper">
 
-        { isPremium ??
-        <div className="property__mark">
+           { isPremium ?
+            <div className="property__mark">
                 <span>Premium</span>
-              </div>
-              }
+            </div> : ''}
 
               <div className="property__name-wrapper">
                 <h1 className="property__name">
@@ -103,7 +107,7 @@ function RoomPage (): JSX.Element {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type}
+                  {capitalLetterType}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms
@@ -152,7 +156,7 @@ function RoomPage (): JSX.Element {
             </div>
           </div>
 
-          <MapComponent properties={nearbyHotels} size={RoomMapSize}/>
+          <MapComponent properties={nearbyHotelsPlusCurrent} size={RoomMapSize}/>
         </section>
 
         <div className="container">

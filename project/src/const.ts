@@ -27,6 +27,7 @@ export enum APIType {
   DataFetchRoom = 'data/fetchRoom',
   DataFetchReviews = 'data/fetchReviews',
   ActionPostReview = 'action/postReview',
+  ActionClearError = 'action/clearError',
   UserPostLogin = 'user/login',
   UserPostLogout = 'user/logout'
 }
@@ -82,6 +83,9 @@ export const Cities = [
     title: 'terribly'
   },
 ];
+
+export const ERROR_TIMEOUT = 3000;
+
 
 export const MainMapSize = {height: '568.600px', width: '512px'}
 

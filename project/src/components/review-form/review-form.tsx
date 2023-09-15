@@ -1,6 +1,7 @@
 import React from "react";
 import { FormEvent, useEffect, useState } from "react";
 import { STARS } from "../../const";
+import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
 import { postReview } from "../../store/api-actions";
 import { addReviewType } from "../../types/review";
@@ -20,6 +21,8 @@ type ReviewFormProps={
 }
 
 function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
+
+  const { isLoading } = useAppSelector(({ACTION})=>ACTION)
 
   const [commentData, setCommentData] = useState<string>('');
   const [ratingData, setRatingData] = useState<number>(0);
@@ -58,9 +61,10 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
     setIsDisabled(
       ratingData === StarsStart.start ||
       commentData.length < CommentLength.Min ||
-      commentData.length > CommentLength.Max,
+      commentData.length > CommentLength.Max ||
+      isLoading
     );
-  }, [ ratingData, commentData ]);
+  }, [ ratingData, commentData, isLoading ]);
 
 
   return(
@@ -84,12 +88,12 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
 
       </div>
 
-      <textarea className="reviews__textarea form__textarea" onChange={handleCommentAdd} value={commentData} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea className="reviews__textarea form__textarea" onChange={handleCommentAdd} value={commentData}  id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">5 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled}>Submit</button>
       </div>
     </form>
   )

@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppRoute, AuthorizationStatus, CardsListType } from "../../const";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
-import { changeFavoriteStatus, fetchHotelsAction } from "../../store/api-actions";
+import { changeFavoriteStatus } from "../../store/api-actions";
 import { Property } from "../../types/property";
+import PremiumBadge from "../premium-badge/premium-badge";
 
 type SinglePropertyCardProps = {
   property: Property,
@@ -35,11 +36,7 @@ function SinglePropertyCard ({property, listType}: SinglePropertyCardProps): JSX
 
     <article className={`${listType === CardsListType[0].title ? 'near-places__card' : 'cities__place-card'} place-card`}>
 
-      {isPremium
-      ??
-      <div className="place-card__mark">
-        <span>Premium</span>
-         </div>}
+      { isPremium ? <PremiumBadge/> : ''}
 
         <div className={`${listType === CardsListType[0].title ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
           <Link to={redirectAddress}>

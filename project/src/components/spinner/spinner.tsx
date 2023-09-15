@@ -10,6 +10,10 @@ function Spinner ({ loading }: SpinnerProps):JSX.Element {
 
 
   const override: CSSProperties = {
+
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
     display: "block",
     margin: "0 auto",
     borderColor: "red",
@@ -25,17 +29,17 @@ function Spinner ({ loading }: SpinnerProps):JSX.Element {
     <div className="cities">
       <div className="cities__places-container container">
 
-      <div className="sweet-loading">
+
 
         <BeatLoader
-          color={'#eee5b5'}
+          color={'#4481c3'}
           loading={loading}
           cssOverride={override}
           aria-label="Loading Spinner"
           data-testid="loader"
         />
 
-        </div>
+
       </div>
     </div>
 

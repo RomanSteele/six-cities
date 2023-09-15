@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppRoute } from "../../const";
 import Logo from "../../logo/logo";
 import { store } from "../../store";
@@ -12,8 +12,11 @@ type HeaderSignOutProps ={
 
 function HeaderSignOut ({data}:HeaderSignOutProps): JSX.Element {
 
+  const navigate = useNavigate()
+
   const handleSignOutClick = ()=> {
     store.dispatch(logoutAction());
+    navigate(AppRoute.Main)
   }
 
 return(

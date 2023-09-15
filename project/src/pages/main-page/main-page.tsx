@@ -49,7 +49,7 @@ function MainPage ():JSX.Element {
 
     {hotelsToRender.length < 1 ?
 
-      <MainEmptyList/>
+      <MainEmptyList cityName={isCurrentSortCity}/>
   :
       <div className="cities">
         <div className="cities__places-container container">

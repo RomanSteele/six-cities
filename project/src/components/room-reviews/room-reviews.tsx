@@ -14,6 +14,13 @@ function RoomReviews ({reviews, hotelId}: RoomReviewsProps): JSX.Element {
 
   const { authorizationStatus } = useAppSelector(({USER})=> USER);
 
+  const reviewsByDate = reviews
+  .slice()
+  .sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+  }).slice(0,10);
 
   return(
     <section className="property__reviews reviews">
@@ -21,7 +28,7 @@ function RoomReviews ({reviews, hotelId}: RoomReviewsProps): JSX.Element {
     <ul className="reviews__list">
 
 
-      {reviews.map((review)=>
+      {reviewsByDate.map((review)=>
     <li className="reviews__item" key={review.date + review.id}>
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">

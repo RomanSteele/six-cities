@@ -3,6 +3,7 @@ import { AppRoute } from "../../const";
 import { store } from "../../store";
 import { changeFavoriteStatus } from "../../store/api-actions";
 import { Property } from "../../types/property";
+import PremiumBadge from "../premium-badge/premium-badge";
 
 type FavoritesPropertyCardProps = {
   property: Property;
@@ -11,7 +12,7 @@ type FavoritesPropertyCardProps = {
 function FavoritesPropertyCard ({property}: FavoritesPropertyCardProps): JSX.Element {
 
 
-  const {id, title, price, previewImage, rating, isFavorite, type} = property;
+  const {id, title, price, previewImage, rating, isFavorite, type, isPremium} = property;
 
   const width = `${Math.round(rating) * 20}%`;
 
@@ -27,6 +28,9 @@ function FavoritesPropertyCard ({property}: FavoritesPropertyCardProps): JSX.Ele
   return(
 
     <article className="favorites__card place-card">
+
+      { isPremium ? <PremiumBadge/> : ''}
+
     <div className="favorites__image-wrapper place-card__image-wrapper">
       <Link to={redirectRoute}>
         <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>

@@ -1,15 +1,16 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {APIRoute, APIType, AuthorizationStatus} from '../const';
+import {APIRoute, APIType, AuthorizationStatus, ERROR_TIMEOUT} from '../const';
 import {AppDispatch, State} from '../types/state';
 
 import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
-import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels, loadReviews  } from './slices/app-data/app-data';
+import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels, loadReviews, setError  } from './slices/app-data/app-data';
 import { Property } from '../types/property';
 import { addReviewType, Review } from '../types/review';
 import { UserLogin, UserLoginDataResponse } from '../types/user-login-data';
 import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
 import { dropToken, saveToken } from '../services/token';
+import { store } from '.';
 
 
 export const fetchHotelsAction = createAsyncThunk<void, undefined, {
@@ -66,11 +67,13 @@ export const fetchCurrentHotelAction = createAsyncThunk<void, number, {
 }>(
   APIType.DataFetchRoom,
   async (id, {dispatch, extra: api}) => {
+
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property>(APIRoute.Room.replace(':id', id.toString()));
     dispatch(loadCurrentHotel(data));
     dispatch(changeLoadingStatus(false));
-  },
+
+  }
 );
 
 export const fetchReviewsAction = createAsyncThunk<void, number, {
@@ -153,6 +156,7 @@ export const checkAuthorization = createAsyncThunk<void, undefined, {
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     dispatch(changeLoadingStatus(false));}
     catch (error) {
+      dispatch(changeLoadingStatus(false))
       dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
       }
     }
@@ -167,8 +171,20 @@ export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:nu
 }>(
   APIType.ActionPostReview,
   async ({id, status}, {dispatch, extra: api}) => {
+    dispatch(changeLoadingStatus(true));
     await api.post(`${APIRoute.Favorite}/${id}/${status}`);
     dispatch(fetchFavoriteHotelsAction());
+    dispatch(changeLoadingStatus(false));
+  },
+);
+
+export const clearErrorAction = createAsyncThunk(
+  APIType.ActionClearError,
+  () => {
+    setTimeout(
+      () => store.dispatch(setError(null)),
+      ERROR_TIMEOUT,
+    );
   },
 );
 
