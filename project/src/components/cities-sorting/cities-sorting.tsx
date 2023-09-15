@@ -5,6 +5,8 @@ import { updateCurrentSortCity } from "../../store/slices/action-data/action-dat
 
 function CitiesSorting (): JSX.Element {
 
+
+
 const dispatch = useAppDispatch();
 const { isCurrentSortCity} = useAppSelector(({ACTION})=>ACTION)
 

@@ -24,17 +24,17 @@
 }
 
 .error-modal p {
-  color: #4481c3; /* Text color */
+  color: #4481c3;
   font-family: inherit;
 }
 
 
 .error-modal button {
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0.26); /* Transparent button color */
+  background-color: rgba(0, 0, 0, 0.26);
   padding: 13px 30px;
   border-radius: 8px;
-  color: #4481c3; /* Button text color */
-  border: none; /* Remove default button border */
+  color: #4481c3;
+  border: none;
   cursor: pointer;
 }
