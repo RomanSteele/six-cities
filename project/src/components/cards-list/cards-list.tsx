@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { CardsListType } from "../../const";
 import { Property } from "../../types/property";
 import SinglePropertyCard from "../single-property-card/single-property-card";

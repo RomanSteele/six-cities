@@ -38,8 +38,6 @@ function MainPage ():JSX.Element {
     );
   }
 
-
-
   return (
     <div className="page page--gray page--main">
 
@@ -68,7 +66,7 @@ function MainPage ():JSX.Element {
 
           <div className="cities__right-section">
 
-            <MapComponent properties={hotelsToRender} currentCity={isCurrentSortCity} size = {MainMapSize}/>
+            <MapComponent properties={hotelsToRender} size={MainMapSize}/>
 
           </div>
         </div>

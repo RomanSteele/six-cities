@@ -3,7 +3,6 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute, APIType, AuthorizationStatus} from '../const';
 import {AppDispatch, State} from '../types/state';
 
-
 import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
 import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels, loadReviews  } from './slices/app-data/app-data';
 import { Property } from '../types/property';

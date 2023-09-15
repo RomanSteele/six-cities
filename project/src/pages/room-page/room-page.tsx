@@ -5,7 +5,7 @@ import Header from "../../components/header/header";
 import MapComponent from "../../components/map-component/map-component";
 import RoomReviews from "../../components/room-reviews/room-reviews";
 import Spinner from "../../components/spinner/spinner";
-import { AppRoute, AuthorizationStatus, RoomMapSize } from "../../const";
+import { AppRoute, AuthorizationStatus, CardsListType, RoomMapSize } from "../../const";
 import { useAppSelector } from "../../hooks";
 import { store } from "../../store";
 import { changeFavoriteStatus, fetchCurrentHotelAction, fetchNearbyHotelsAction, fetchReviewsAction } from "../../store/api-actions";
@@ -18,12 +18,10 @@ function RoomPage (): JSX.Element {
   const hotelId = Number(params.id);
   const navigate = useNavigate();
 
-
   const { currentHotel, reviews, favoriteHotels, nearbyHotels } = useAppSelector(({DATA})=>DATA);
   const { authorizationStatus } = useAppSelector(({USER})=>USER);
   const { isLoading } = useAppSelector(({ACTION})=>ACTION)
   const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite, city } = currentHotel;
-
 
   const imagesToRender = images.slice(0,6);
   const width = `${Math.round(rating) * 20}%`;
@@ -40,7 +38,7 @@ function RoomPage (): JSX.Element {
   }
 
   useEffect(()=> {
-   store.dispatch(fetchCurrentHotelAction(hotelId))
+   store.dispatch(fetchCurrentHotelAction(hotelId));
   },[favoriteHotels])
 
 
@@ -51,12 +49,11 @@ function RoomPage (): JSX.Element {
   }, [params.id]);
 
 
-  if (isLoading ) {
+  if (isLoading && currentHotel.id != hotelId) {
     return (
       <Spinner loading={isLoading} />
     );
   }
-
 
   return(
 
@@ -153,17 +150,16 @@ function RoomPage (): JSX.Element {
 
               <RoomReviews reviews={reviews} hotelId={hotelId}/>
             </div>
-
           </div>
 
-          <MapComponent properties={nearbyHotels} currentCity={city.name} size={RoomMapSize}/>
+          <MapComponent properties={nearbyHotels} size={RoomMapSize}/>
         </section>
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-        <CardsList properties={nearbyHotels} listType={""}/>
+        <CardsList properties={nearbyHotels} listType={CardsListType[0].title}/>
 
           </section>
         </div>
