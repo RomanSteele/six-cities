@@ -1,5 +1,7 @@
+
 import { Routes, Route } from "react-router-dom";
 import { AppRoute, AuthorizationStatus } from "../../const";
+import { isAuthStatusUnknown } from "../../helpers";
 import { useAppSelector } from "../../hooks";
 import FavoritesPage from "../../pages/favorites-page/favorites-page";
 import MainPage from "../../pages/main-page/main-page";
@@ -16,7 +18,12 @@ function App(): JSX.Element {
   const {authorizationStatus} = useAppSelector(({USER})=>USER)
   const {isLoading} = useAppSelector(({ACTION})=>ACTION)
 
-  if (authorizationStatus === AuthorizationStatus.Unknown ) {
+
+
+
+
+
+  if (isAuthStatusUnknown(authorizationStatus)) {
     return (
       <Spinner loading={isLoading} />
     );

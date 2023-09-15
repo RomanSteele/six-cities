@@ -40,7 +40,7 @@ function RoomPage (): JSX.Element {
   }
 
   useEffect(()=> {
-    store.dispatch(fetchCurrentHotelAction(id))
+   store.dispatch(fetchCurrentHotelAction(hotelId))
   },[favoriteHotels])
 
 

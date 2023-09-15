@@ -1,4 +1,4 @@
-import { SortingOptions } from "./const";
+import { AuthorizationStatus, SortingOptions } from "./const";
 import { Property } from "./types/property";
 import { UserLoginDataResponse } from "./types/user-login-data";
 
@@ -78,3 +78,6 @@ export const initialProperty:Property =
     }
 return []
   }
+
+  export const isAuthStatusUnknown = (authorizationStatus: string): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;

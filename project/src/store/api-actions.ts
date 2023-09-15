@@ -147,12 +147,17 @@ export const checkAuthorization = createAsyncThunk<void, undefined, {
 }>(
   APIType.UserPostLogout,
   async (_arg, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     const { data } = await api.get<UserLoginDataResponse>(APIRoute.Login);
     dispatch(loadUserData(data));
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-    dispatch(changeLoadingStatus(false));
-  },
+    dispatch(changeLoadingStatus(false));}
+    catch (error) {
+      dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
+      }
+    }
+
 );
 
 export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:number}, {
