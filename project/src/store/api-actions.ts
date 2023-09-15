@@ -167,10 +167,8 @@ export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:nu
 }>(
   APIType.ActionPostReview,
   async ({id, status}, {dispatch, extra: api}) => {
-    dispatch(changeLoadingStatus(true));
     await api.post(`${APIRoute.Favorite}/${id}/${status}`);
     dispatch(fetchFavoriteHotelsAction());
-    dispatch(changeLoadingStatus(false));
   },
 );
 

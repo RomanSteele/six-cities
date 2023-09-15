@@ -25,7 +25,7 @@ function SinglePropertyCard ({property, listType}: SinglePropertyCardProps): JSX
   const favoritesButtonClickHandle =() =>{
     if(authorizationStatus === AuthorizationStatus.Authorized){
     store.dispatch(changeFavoriteStatus({id, status}))
-    store.dispatch(fetchHotelsAction())}
+  }
     else {
       navigate(AppRoute.Login)
     }

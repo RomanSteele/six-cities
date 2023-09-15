@@ -21,7 +21,7 @@ function RoomPage (): JSX.Element {
   const { currentHotel, reviews, favoriteHotels, nearbyHotels } = useAppSelector(({DATA})=>DATA);
   const { authorizationStatus } = useAppSelector(({USER})=>USER);
   const { isLoading } = useAppSelector(({ACTION})=>ACTION)
-  const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite, city } = currentHotel;
+  const { id, title, images, isPremium, rating, goods, maxAdults, price, type, bedrooms, host, description, isFavorite } = currentHotel;
 
   const imagesToRender = images.slice(0,6);
   const width = `${Math.round(rating) * 20}%`;

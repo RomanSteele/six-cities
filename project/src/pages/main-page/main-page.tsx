@@ -32,7 +32,7 @@ function MainPage ():JSX.Element {
   },[])
 
 
-  if (isLoading ) {
+  if (isLoading && hotels.length<1 ) {
     return (
       <Spinner loading={isLoading} />
     );
