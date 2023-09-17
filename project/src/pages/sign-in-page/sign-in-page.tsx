@@ -79,7 +79,7 @@ function SignInPage ():JSX.Element {
             <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" data-testid="user-password"/>
           </div>
 
-          <button className="login__submit form__submit button" type="submit">Sign in</button>
+          <button className="login__submit form__submit button" type="submit" data-testid={'test-button'}>Sign in</button>
           { !isEmailValid || !isPasswordValid ? <p className="favorites__status-description">Wrong email or password!</p> : ''}
         </form>
       </section>
