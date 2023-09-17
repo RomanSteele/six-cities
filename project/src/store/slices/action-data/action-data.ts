@@ -6,10 +6,6 @@ import { ActionData } from '../../../types/state';
 
 const initialState:ActionData  = {
   isFavorite: false,
-  addReview: {
-    comment: '',
-    rating: 0
-  },
   isLoading: false,
   isCurrentSortCity: startSortCity,
   isCurrentSortingOption: SortingOptions[0]
@@ -28,9 +24,7 @@ export const actionData = createSlice ({
     updateSortingOption: (state,action) => {
       state.isCurrentSortingOption = action.payload
     },
-    addReview: (state, action) => {
-      state.addReview = action.payload;
-    },
+
     changeLoadingStatus: (state, action) => {
       state.isLoading = action.payload;
     },
@@ -38,4 +32,4 @@ export const actionData = createSlice ({
   },
 });
 
-export const { addReview , updateIsFavorite, changeLoadingStatus, updateCurrentSortCity, updateSortingOption } = actionData.actions;
+export const {  updateIsFavorite, changeLoadingStatus, updateCurrentSortCity, updateSortingOption } = actionData.actions;

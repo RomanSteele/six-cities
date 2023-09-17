@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute, APIType, AuthorizationStatus, ERROR_TIMEOUT} from '../const';
 import {AppDispatch, State} from '../types/state';
 
-import { addReview, changeLoadingStatus } from './slices/action-data/action-data';
+import { changeLoadingStatus } from './slices/action-data/action-data';
 import { loadCurrentHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels, loadReviews, setError  } from './slices/app-data/app-data';
 import { Property } from '../types/property';
 import { addReviewType, Review } from '../types/review';
@@ -100,8 +100,7 @@ export const postReview = createAsyncThunk<void, addReviewType, {
   APIType.ActionPostReview,
   async ({id, comment, rating}, {dispatch, extra: api}) => {
     dispatch(changeLoadingStatus(true));
-    const {data} = await api.post<addReviewType>(APIRoute.Reviews.replace(':id', id.toString()), {comment, rating});
-    dispatch(addReview(data));
+    await api.post<addReviewType>(APIRoute.Reviews.replace(':id', id.toString()), {comment, rating});
     dispatch(fetchReviewsAction(id))
     dispatch(changeLoadingStatus(false));
   },

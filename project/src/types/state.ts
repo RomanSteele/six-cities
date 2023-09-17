@@ -9,10 +9,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export type ActionData = {
   isFavorite: boolean,
-  addReview: {
-    comment: string,
-    rating: number
-  },
   isLoading:boolean,
   isCurrentSortCity: string,
   isCurrentSortingOption: string
