@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace, SortingOptions } from '../../../const';
+import { NameSpace, SortingOptions, startSortCity } from '../../../const';
 
 import { ActionData } from '../../../types/state';
-
-const startSortCity = 'Paris';
 
 
 const initialState:ActionData  = {

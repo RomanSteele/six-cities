@@ -86,6 +86,7 @@ export const Cities = [
 
 export const ERROR_TIMEOUT = 3000;
 
+export const startSortCity = 'Paris';
 
 export const MainMapSize = {height: '568.600px', width: '512px'}
 

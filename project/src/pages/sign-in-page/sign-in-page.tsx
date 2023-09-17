@@ -71,12 +71,12 @@ function SignInPage ():JSX.Element {
 
           <div className="login__input-wrapper form__input-wrapper">
             <label className="visually-hidden">E-mail</label>
-            <input ref={emailRef} className="login__input form__input" type="email" name="email" placeholder="Email" />
+            <input ref={emailRef} className="login__input form__input" type="email" name="email" placeholder="Email" data-testid="user-email" />
           </div>
 
           <div className="login__input-wrapper form__input-wrapper">
             <label className="visually-hidden">Password</label>
-            <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" />
+            <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" data-testid="user-password"/>
           </div>
 
           <button className="login__submit form__submit button" type="submit">Sign in</button>
