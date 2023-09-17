@@ -1,4 +1,5 @@
 import { name, internet , datatype } from 'faker';
+import { AuthorizationStatus } from '../const';
 import { Property } from "../types/property";
 import { Review } from '../types/review';
 import { UserLoginDataResponse } from "../types/user-login-data";
@@ -6,6 +7,12 @@ import { UserLoginDataResponse } from "../types/user-login-data";
 export const fakeId = 2;
 
 export const fakeError = ['Error!', null ];
+
+export const fakeEmail: Array<string> = ['ousekf@kjsenf.com', 'wefwfwe@fsefsd.c'];
+
+export const fakePassword: Array<string> = ['ousekf2346477658', ''];
+
+export const fakeAuthStatus: Array<string> = [AuthorizationStatus.Unknown, AuthorizationStatus.Authorized, AuthorizationStatus.NotAuthorized];
 
 export const fakeUserData: UserLoginDataResponse = {
   avatarUrl: internet.avatar(),

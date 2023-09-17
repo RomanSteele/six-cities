@@ -61,6 +61,9 @@ export const initialProperty:Property =
   };
 
 
+  export const isAuthStatusUnknown = (authorizationStatus: string): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
+
   export const sortPropertiesByOption = (option: string, properties: Property[]):Property[] | [] => {
     if(properties && option){
 
@@ -78,6 +81,3 @@ export const initialProperty:Property =
     }
 return []
   }
-
-  export const isAuthStatusUnknown = (authorizationStatus: string): boolean =>
-  authorizationStatus === AuthorizationStatus.Unknown;
