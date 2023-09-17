@@ -10,7 +10,7 @@ function FavoritesList ({properties}: FavoritesListProps): JSX.Element{
   return(
     <div className="favorites__places">
       {properties.map((property) =>
-        <FavoritesPropertyCard property={property} key = {property.title}/>
+        <FavoritesPropertyCard property={property} key={property.title}/>
       )}
     </div>
   )

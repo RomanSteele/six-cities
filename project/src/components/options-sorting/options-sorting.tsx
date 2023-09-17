@@ -9,7 +9,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 function OptionsSorting(): JSX.Element{
 
   const [isOpen, setIsOpen] = useState(false);
- const { isCurrentSortingOption,isCurrentSortCity } = useAppSelector(({ACTION})=>ACTION);
+ const { isCurrentSortingOption, isCurrentSortCity } = useAppSelector(({ACTION})=>ACTION);
  const ref = useDetectClickOutside({ onTriggered:()=> setIsOpen(false) })
 
   const listClickHandler = () => {

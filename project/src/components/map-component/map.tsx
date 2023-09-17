@@ -50,7 +50,7 @@ function Map({ city, points, size }: MapProps) {
     }
   }, [map, points, defaultCustomIcon, currentCustomIcon]);
 
-  return <div style={size} ref={mapRef}></div>;
+  return <div style={size} ref={mapRef} data-testid={'leaflet-map'}></div>;
 }
 
 export default Map;

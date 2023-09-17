@@ -1,7 +1,7 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import { AppRoute } from "../../const";
-import Logo from "../../logo/logo";
+import Logo from "../logo/logo";
 import { store } from "../../store";
 import { logoutAction } from "../../store/api-actions";
 import { UserLoginDataResponse } from "../../types/user-login-data";

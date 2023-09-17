@@ -3,6 +3,8 @@ import { Property } from "../types/property";
 import { Review } from '../types/review';
 import { UserLoginDataResponse } from "../types/user-login-data";
 
+export const fakeId = 2;
+
 export const fakeUserData: UserLoginDataResponse = {
   avatarUrl: internet.avatar(),
   email: 'fseq31233@gmail.com',

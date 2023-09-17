@@ -88,7 +88,7 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
 
       </div>
 
-      <textarea className="reviews__textarea form__textarea" onChange={handleCommentAdd} value={commentData}  id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea className="reviews__textarea form__textarea" onChange={handleCommentAdd} value={commentData}  id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" data-testid={'review-text'}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">5 characters</b>.

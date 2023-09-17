@@ -1,6 +1,6 @@
 import { FormEvent, useRef, useState } from "react";
 import { validateEmail, validatePassword } from "../../helpers";
-import Logo from "../../logo/logo";
+import Logo from "../../components/logo/logo";
 import { store } from "../../store";
 import { loginAction } from "../../store/api-actions";
 import { UserLogin } from "../../types/user-login-data";

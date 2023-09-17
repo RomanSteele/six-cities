@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AppRoute } from "../../const";
-import Logo from "../../logo/logo";
+import Logo from "../logo/logo";
 
 
 function HeaderSignIn (): JSX.Element {
