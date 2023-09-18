@@ -16,6 +16,8 @@ import { updateCurrentSortCity } from "../../store/slices/action-data/action-dat
 
 function MainPage ():JSX.Element {
 
+  const mapType = 'cities';
+
   const { hotels, favoriteHotels } = useAppSelector(({DATA})=>DATA);
   const { isCurrentSortCity, isCurrentSortingOption, isLoading } = useAppSelector(({ACTION})=>ACTION);
 
@@ -66,7 +68,7 @@ function MainPage ():JSX.Element {
 
           <div className="cities__right-section">
 
-            <MapComponent properties={hotelsToRender} size={MainMapSize}/>
+            <MapComponent properties={hotelsToRender} size={MainMapSize} type={mapType}/>
 
           </div>
         </div>

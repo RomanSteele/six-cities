@@ -25,7 +25,7 @@ describe('Component: MapComponent', () => {
     render(
       <Provider store={store}>
       <HistoryRouter history={history}>
-          <MapComponent properties={mockHotels} size={{height:'100', width:'100'}} />
+          <MapComponent properties={mockHotels} size={{height:'100', width:'100'}} type={'cities'}/>
       </HistoryRouter>
       </Provider>
     );

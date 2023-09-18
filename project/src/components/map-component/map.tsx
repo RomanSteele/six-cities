@@ -50,7 +50,16 @@ function Map({ city, points, size }: MapProps) {
     }
   }, [map, points, defaultCustomIcon, currentCustomIcon]);
 
-  return <div style={size} ref={mapRef} data-testid={'leaflet-map'}></div>;
+  const centerMapStyle: React.CSSProperties = {
+    position: 'relative',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    height: size.height,
+    width: size.width,
+  };
+
+  return <div style={{ ...size, ...centerMapStyle }} ref={mapRef} data-testid={'leaflet-map'}></div>;
 }
 
 export default Map;

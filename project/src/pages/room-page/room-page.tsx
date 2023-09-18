@@ -28,6 +28,8 @@ function RoomPage (): JSX.Element {
 
   const status = isFavorite ? 0 : 1;
 
+  const mapType = 'property';
+
   const nearbyHotelsPlusCurrent = [...nearbyHotels, currentHotel];
 
   const capitalLetterType = type.charAt(0).toUpperCase() + type.slice(1);
@@ -156,7 +158,7 @@ function RoomPage (): JSX.Element {
             </div>
           </div>
 
-          <MapComponent properties={nearbyHotelsPlusCurrent} size={RoomMapSize}/>
+          <MapComponent properties={nearbyHotelsPlusCurrent} size={RoomMapSize} type={mapType}/>
         </section>
 
         <div className="container">

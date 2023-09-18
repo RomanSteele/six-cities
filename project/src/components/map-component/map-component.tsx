@@ -7,10 +7,11 @@ import Map from './map';
 type MapComponentProps ={
   properties: Property[] | [],
   size: Dimensions,
+  type: string
 }
 
 
-function MapComponent({ properties, size }:MapComponentProps): JSX.Element {
+function MapComponent({ properties, size, type }:MapComponentProps): JSX.Element {
   const [isCityLocation, setCityLocation] = useState(properties[0].city.location);
   const [ispointsLocation, setpointsLocation] = useState(properties.map((hotel)=> hotel.location));
 
@@ -21,7 +22,7 @@ useEffect(()=>{
 },[properties])
 
   return(
-    <section className="cities__map map">
+    <section className={`${type}__map map`}>
 
         <Map
           city={isCityLocation}

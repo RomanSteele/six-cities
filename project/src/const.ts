@@ -91,7 +91,7 @@ export const startSortCity = 'Paris';
 
 export const MainMapSize = {height: '568.600px', width: '512px'}
 
-export const RoomMapSize = {height: '579px', width: '1153.450px'}
+export const RoomMapSize = {height: '579px', width: '1268.800px'}
 
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
