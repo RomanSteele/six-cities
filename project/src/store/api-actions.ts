@@ -36,10 +36,13 @@ export const fetchFavoriteHotelsAction = createAsyncThunk<void, undefined, {
 }>(
   APIType.DataFetchFavoriteHotels,
   async (_arg, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property[]>(APIRoute.Favorite);
     dispatch(loadFavoriteHotels(data));
-    dispatch(changeLoadingStatus(false));
+    dispatch(changeLoadingStatus(false));}
+    catch(error){
+      dispatch(changeLoadingStatus(false));}
   },
 );
 
@@ -51,10 +54,13 @@ export const fetchNearbyHotelsAction = createAsyncThunk<void, number, {
 }>(
   APIType.DataFetchNearbyHotels,
   async (id, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property[]>(APIRoute.NearbyHotels.replace(':id', id.toString()));
     dispatch(loadNearbyHotels(data));
-    dispatch(changeLoadingStatus(false));
+    dispatch(changeLoadingStatus(false));}
+    catch(error){
+      dispatch(changeLoadingStatus(false));}
   },
 );
 
@@ -67,13 +73,15 @@ export const fetchCurrentHotelAction = createAsyncThunk<void, number, {
 }>(
   APIType.DataFetchRoom,
   async (id, {dispatch, extra: api}) => {
-
+    try{
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Property>(APIRoute.Room.replace(':id', id.toString()));
     dispatch(loadCurrentHotel(data));
-    dispatch(changeLoadingStatus(false));
-
+    dispatch(changeLoadingStatus(false));}
+catch(error){
+  dispatch(changeLoadingStatus(false))
   }
+}
 );
 
 export const fetchReviewsAction = createAsyncThunk<void, number, {
@@ -84,10 +92,14 @@ export const fetchReviewsAction = createAsyncThunk<void, number, {
 }>(
   APIType.DataFetchReviews,
   async (id, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     const {data} = await api.get<Review[]>(APIRoute.Reviews.replace(':id', id.toString()));
     dispatch(loadReviews(data));
-    dispatch(changeLoadingStatus(false));
+    dispatch(changeLoadingStatus(false));}
+    catch(error){
+      dispatch(changeLoadingStatus(false))
+      }
   },
 );
 
@@ -99,10 +111,14 @@ export const postReview = createAsyncThunk<void, addReviewType, {
 }>(
   APIType.ActionPostReview,
   async ({id, comment, rating}, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     await api.post<addReviewType>(APIRoute.Reviews.replace(':id', id.toString()), {comment, rating});
     dispatch(fetchReviewsAction(id))
-    dispatch(changeLoadingStatus(false));
+    dispatch(changeLoadingStatus(false));}
+      catch(error){
+        dispatch(changeLoadingStatus(false))
+      }
   },
 );
 
@@ -114,13 +130,17 @@ export const loginAction = createAsyncThunk<void, UserLogin, {
 }>(
   APIType.UserPostLogin,
   async ({email, password}, {dispatch, extra: api}) => {
+    try{
     dispatch(changeLoadingStatus(true));
     const {data} = await api.post<UserLoginDataResponse>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(loadUserData(data));
-    fetchFavoriteHotelsAction();
     dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-    dispatch(changeLoadingStatus(false));
+    dispatch(changeLoadingStatus(false));}
+    catch(error){
+      dispatch(changeLoadingStatus(false))
+      dispatch(requireAuthorization(AuthorizationStatus.Unknown));
+    }
   },
 );
 
@@ -146,7 +166,7 @@ export const checkAuthorization = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 
 }>(
-  APIType.UserPostLogout,
+  APIType.UserPostLogin,
   async (_arg, {dispatch, extra: api}) => {
     try{
     dispatch(changeLoadingStatus(true));
@@ -168,14 +188,13 @@ export const changeFavoriteStatus = createAsyncThunk<void, {id:number, status:nu
   extra: AxiosInstance;
 
 }>(
-  APIType.ActionPostReview,
+  APIType.ActionChangeFavoriteStatus,
   async ({id, status}, {dispatch, extra: api}) => {
-    dispatch(changeLoadingStatus(true));
     await api.post(`${APIRoute.Favorite}/${id}/${status}`);
     dispatch(fetchFavoriteHotelsAction());
-    dispatch(changeLoadingStatus(false));
   },
 );
+
 
 export const clearErrorAction = createAsyncThunk(
   APIType.ActionClearError,

@@ -13,7 +13,7 @@ const initialState = {
 describe('Reducer: actionData', () => {
 
 
-const loadingStatusChange =false;
+const loadingStatusChange = false;
 const favoriteStatusChange =true;
 
   it('without additional parameters should return initial state', () => {

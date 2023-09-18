@@ -27,6 +27,7 @@ export enum APIType {
   DataFetchRoom = 'data/fetchRoom',
   DataFetchReviews = 'data/fetchReviews',
   ActionPostReview = 'action/postReview',
+  ActionChangeFavoriteStatus = 'action/ChangeFavoriteStatus',
   ActionClearError = 'action/clearError',
   UserPostLogin = 'user/login',
   UserPostLogout = 'user/logout'

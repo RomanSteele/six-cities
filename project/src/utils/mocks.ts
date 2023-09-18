@@ -2,7 +2,7 @@ import { name, internet , datatype } from 'faker';
 import { AuthorizationStatus } from '../const';
 import { Property } from "../types/property";
 import { Review } from '../types/review';
-import { UserLoginDataResponse } from "../types/user-login-data";
+import { UserLogin, UserLoginDataResponse } from "../types/user-login-data";
 
 export const fakeId = 2;
 
@@ -14,12 +14,28 @@ export const fakePassword: Array<string> = ['ousekf2346477658', ''];
 
 export const fakeAuthStatus: Array<string> = [AuthorizationStatus.Unknown, AuthorizationStatus.Authorized, AuthorizationStatus.NotAuthorized];
 
+export const fakeFavoriteStatusChange: {id:number, status:number} = {
+  id: 2,
+  status: 1
+}
+
 export const fakeUserData: UserLoginDataResponse = {
   avatarUrl: internet.avatar(),
   email: 'fseq31233@gmail.com',
   id: 0,
   name: name.title(),
   token: datatype.string(20),
+};
+
+export const fakeLoginUserData:UserLogin = {
+  email: 'asekjw@kwjef.com',
+  password:'string'
+}
+
+export const fakeUserReview = {
+  id: datatype.number({ min: 1 }),
+  comment: datatype.string(20) ,
+  rating: datatype.number({ min: 1 })
 };
 
 export const fakeReviews : Review[] = [
