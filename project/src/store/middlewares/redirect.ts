@@ -7,6 +7,7 @@ import { rootReducer } from '../root-reducer';
 type Reducer = ReturnType<typeof rootReducer>;
 
 export const redirect: Middleware<unknown, Reducer>=
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (_store) =>
     (next) =>
       (action) => {

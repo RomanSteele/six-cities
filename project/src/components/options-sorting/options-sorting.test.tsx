@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import OptionsSorting from './options-sorting';
-import { Cities, SortingOptions, startSortCity } from '../../const';
+import { SortingOptions, startSortCity } from '../../const';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 

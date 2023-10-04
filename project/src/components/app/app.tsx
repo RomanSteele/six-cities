@@ -1,6 +1,6 @@
 
 import { Routes, Route } from "react-router-dom";
-import { AppRoute, AuthorizationStatus } from "../../const";
+import { AppRoute } from "../../const";
 import { isAuthStatusUnknown } from "../../helpers";
 import { useAppSelector } from "../../hooks";
 import FavoritesPage from "../../pages/favorites-page/favorites-page";
