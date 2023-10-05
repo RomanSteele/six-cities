@@ -1,10 +1,10 @@
-import React from "react";
-import { FormEvent, useEffect, useState } from "react";
-import { STARS } from "../../const";
-import { useAppSelector } from "../../hooks";
-import { store } from "../../store";
-import { postReview } from "../../store/api-actions";
-import { addReviewType } from "../../types/review";
+import React from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { STARS } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { store } from '../../store';
+import { postReview } from '../../store/api-actions';
+import { addReviewType } from '../../types/review';
 
 
 const enum CommentLength {
@@ -20,9 +20,9 @@ type ReviewFormProps={
   hotelId: number;
 }
 
-function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
+function ReviewForm ({ hotelId }: ReviewFormProps): JSX.Element {
 
-  const { isLoading } = useAppSelector(({ACTION})=>ACTION)
+  const { isLoading } = useAppSelector(({ ACTION })=>ACTION);
 
   const [commentData, setCommentData] = useState<string>('');
   const [ratingData, setRatingData] = useState<number>(0);
@@ -52,8 +52,8 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
           rating: ratingData,
           comment: commentData,
         });
-        setRatingData(0);
-        setCommentData('');
+      setRatingData(0);
+      setCommentData('');
     }
   };
 
@@ -62,27 +62,29 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
       ratingData === StarsStart.start ||
       commentData.length < CommentLength.Min ||
       commentData.length > CommentLength.Max ||
-      isLoading
+      isLoading,
     );
   }, [ ratingData, commentData, isLoading ]);
 
 
-  return(
+  return (
     <form onSubmit={handleSubmit} className="reviews__form form" action="#" method="post">
 
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
 
-      {STARS.map((star)=>
+        {STARS.map((star)=>
 
-        <React.Fragment key={star.id}>
-          <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-stars`} type="radio" />
-          <label htmlFor={`${star.id}-stars`} onClick={() => { hanldeMouseClick(star.id); } } className="reviews__rating-label form__rating-label" title={star.title}>
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-        </React.Fragment>
+          (
+            <React.Fragment key={star.id}>
+              <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-stars`} type="radio" />
+              <label htmlFor={`${star.id}-stars`} onClick={() => { hanldeMouseClick(star.id); } } className="reviews__rating-label form__rating-label" title={star.title}>
+                <svg className="form__star-image" width="37" height="33">
+                  <use xlinkHref="#icon-star"></use>
+                </svg>
+              </label>
+            </React.Fragment>
+          ),
 
         )}
 
@@ -96,7 +98,7 @@ function ReviewForm ({hotelId}: ReviewFormProps): JSX.Element {
         <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled}>Submit</button>
       </div>
     </form>
-  )
+  );
 }
 
 export default ReviewForm;

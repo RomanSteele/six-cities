@@ -15,12 +15,14 @@ function Map({ city, points, size }: MapProps) {
   const mapRef = useRef(null);
   const map = useMap({ mapRef, city });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const defaultCustomIcon = new leaflet.Icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const currentCustomIcon = new leaflet.Icon({
     iconUrl: URL_MARKER_CURRENT,
     iconSize: [40, 40],

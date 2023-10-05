@@ -9,5 +9,5 @@ export type UserLoginDataResponse = {
 
 export type UserLogin = {
   email: string,
-  password:string
+  password: string
 }

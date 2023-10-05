@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import FavoritesListEmpty from './favorites-list-empty';
 
 describe('Component: FavoritesList', () => {
@@ -7,7 +7,7 @@ describe('Component: FavoritesList', () => {
   it('should render favorite hotels list', async () => {
 
     render(
-            <FavoritesListEmpty />
+      <FavoritesListEmpty />,
     );
 
     expect(screen.getByText(/Nothing yet saved./i)).toBeInTheDocument();

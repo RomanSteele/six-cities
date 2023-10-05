@@ -1,4 +1,4 @@
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import SignInPage from '../../pages/sign-in-page/sign-in-page';
 import { AppRoute, AuthorizationStatus } from '../../const';
 
@@ -8,7 +8,7 @@ type PrivateRouteProps = {
 }
 
 function PrivateRoute( props: PrivateRouteProps ): JSX.Element{
-  const {authorizationStatus, children} = props;
+  const { authorizationStatus, children } = props;
 
 
   if (children.type !== SignInPage){

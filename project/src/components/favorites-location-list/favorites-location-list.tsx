@@ -1,35 +1,36 @@
-import { Property } from "../../types/property";
-import FavoritesList from "../favorites-list/favorites-list";
+import { Property } from '../../types/property';
+import FavoritesList from '../favorites-list/favorites-list';
 
 type FavoritesLocationListProps={
-  items:string[],
+  items: string[],
   properties: Property[],
 }
 
-function FavoritesLocationList ({items, properties}:FavoritesLocationListProps): JSX.Element {
+function FavoritesLocationList ({ items, properties }: FavoritesLocationListProps): JSX.Element {
 
-  return(
+  return (
     <section className="favorites">
-    <h1 className="favorites__title">Saved listing</h1>
-    <ul className="favorites__list">
-{ items.map((item)=>
-    <li className="favorites__locations-items" key={item}>
-    <div className="favorites__locations locations locations--current">
-      <div className="locations__item">
-        <a className="locations__item-link" href="#">
-          <span>{item}</span>
-        </a>
-      </div>
-    </div>
+      <h1 className="favorites__title">Saved listing</h1>
+      <ul className="favorites__list">
+        { items.map((item)=>
+          (
+            <li className="favorites__locations-items" key={item}>
+              <div className="favorites__locations locations locations--current">
+                <div className="locations__item">
+                  <a className="locations__item-link" href="#">
+                    <span>{item}</span>
+                  </a>
+                </div>
+              </div>
 
-  <FavoritesList properties={properties.filter((property)=>property.city.name === item)}/>
+              <FavoritesList properties={properties.filter((property)=>property.city.name === item)}/>
 
-  </li>
-)
-}
-  </ul>
-  </section>
-  )
+            </li>
+          ),
+        )        }
+      </ul>
+    </section>
+  );
 }
 
 export default FavoritesLocationList;

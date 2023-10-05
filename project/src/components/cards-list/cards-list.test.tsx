@@ -1,5 +1,5 @@
-import {render, screen} from '@testing-library/react';
-import {createMemoryHistory} from 'history';
+import { render, screen } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import HistoryRouter from '../history-router/history-router';
 import CardsList from './cards-list';
 import { fakeHotelsArray } from '../../utils/mocks';
@@ -9,13 +9,13 @@ import { Provider } from 'react-redux';
 
 const history = createMemoryHistory();
 
-const mockMovies = fakeHotelsArray
+const mockMovies = fakeHotelsArray;
 
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Authorized, },
-})
+  USER: { authorizationStatus: AuthorizationStatus.Authorized },
+});
 
 describe('Component: CardsList', () => {
 
@@ -24,15 +24,15 @@ describe('Component: CardsList', () => {
 
     render(
       <Provider store={store}>
-      <HistoryRouter history={history}>
+        <HistoryRouter history={history}>
           <CardsList properties={mockMovies} listType={CardsListType[0].title} />
-      </HistoryRouter>
-      </Provider>
+        </HistoryRouter>
+      </Provider>,
     );
 
 
-    expect(screen.getByText(new RegExp(`${mockMovies[0].title}`,'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${mockMovies[1].title}`,'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${mockMovies[0].title}`, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${mockMovies[1].title}`, 'i'))).toBeInTheDocument();
   });
 
 

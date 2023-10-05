@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 
 import CitiesSorting from './cities-sorting';
@@ -7,12 +7,11 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 
 
-
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  ACTION: {isCurrentSortCity: startSortCity,},
-})
+  ACTION: { isCurrentSortCity: startSortCity },
+});
 
 describe('Component: CitiesSorting', () => {
 
@@ -23,15 +22,15 @@ describe('Component: CitiesSorting', () => {
     render(
       <Provider store={store}>
 
-          <CitiesSorting  />
+        <CitiesSorting  />
 
-      </Provider>
+      </Provider>,
     );
 
 
-    expect(screen.getByText(new RegExp(`${Cities[0]}`,'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${Cities[2]}`,'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${Cities[4]}`,'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${Cities[0]}`, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${Cities[2]}`, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${Cities[4]}`, 'i'))).toBeInTheDocument();
 
   });
 

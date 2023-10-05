@@ -11,26 +11,26 @@ type MapComponentProps ={
 }
 
 
-function MapComponent({ properties, size, type }:MapComponentProps): JSX.Element {
+function MapComponent({ properties, size, type }: MapComponentProps): JSX.Element {
   const [isCityLocation, setCityLocation] = useState(properties[0].city.location);
   const [ispointsLocation, setpointsLocation] = useState(properties.map((hotel)=> hotel.location));
 
 
-useEffect(()=>{
-  setCityLocation(properties[0].city.location)
-  setpointsLocation(properties.map((hotel)=> hotel.location))
-},[properties])
+  useEffect(()=>{
+    setCityLocation(properties[0].city.location);
+    setpointsLocation(properties.map((hotel)=> hotel.location));
+  }, [properties]);
 
-  return(
+  return (
     <section className={`${type}__map map`}>
 
-        <Map
-          city={isCityLocation}
-          points={ispointsLocation}
-          size={size}
-        />
+      <Map
+        city={isCityLocation}
+        points={ispointsLocation}
+        size={size}
+      />
     </section>
-  )
+  );
 }
 
 export default MapComponent;

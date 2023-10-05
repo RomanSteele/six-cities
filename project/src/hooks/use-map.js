@@ -20,7 +20,7 @@ function useMap({ mapRef, city }) {
           {
             attribution:
               '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          }
+          },
         )
         .addTo(instance);
 

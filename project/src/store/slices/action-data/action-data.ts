@@ -4,11 +4,11 @@ import { NameSpace, SortingOptions, startSortCity } from '../../../const';
 import { ActionData } from '../../../types/state';
 
 
-const initialState:ActionData  = {
+const initialState: ActionData  = {
   isFavorite: false,
   isLoading: false,
   isCurrentSortCity: startSortCity,
-  isCurrentSortingOption: SortingOptions[0]
+  isCurrentSortingOption: SortingOptions[0],
 };
 
 export const actionData = createSlice ({
@@ -18,11 +18,11 @@ export const actionData = createSlice ({
     updateIsFavorite: (state, action) => {
       state.isFavorite = action.payload;
     },
-    updateCurrentSortCity: (state,action) => {
-      state.isCurrentSortCity = action.payload
+    updateCurrentSortCity: (state, action) => {
+      state.isCurrentSortCity = action.payload;
     },
-    updateSortingOption: (state,action) => {
-      state.isCurrentSortingOption = action.payload
+    updateSortingOption: (state, action) => {
+      state.isCurrentSortingOption = action.payload;
     },
 
     changeLoadingStatus: (state, action) => {

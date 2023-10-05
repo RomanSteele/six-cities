@@ -46,8 +46,8 @@ export enum NameSpace {
 }
 
 export const CardsListType = [
-    {title: 'nearPlaces'},
-    {title: 'citiesPlaces'},
+  { title: 'nearPlaces' },
+  { title: 'citiesPlaces' },
 ];
 
 export const Cities = [
@@ -56,32 +56,32 @@ export const Cities = [
   'Brussels',
   'Amsterdam',
   'Hamburg',
-  'Dusseldorf'
+  'Dusseldorf',
 ];
 
-  export const SortingOptions =[
-   'Popular',
-   'Price: low to high',
-   'Price: high to low',
-   'Top rated first',
-  ]
+export const SortingOptions =[
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
 
 
-  export const STARS= [
-  {id:5,
-    title: 'perfect'
+export const STARS= [
+  { id: 5,
+    title: 'perfect',
   },
-  {id:4,
-    title: 'good'
+  { id: 4,
+    title: 'good',
   },
-  {id:3,
-    title: 'not bad'
+  { id: 3,
+    title: 'not bad',
   },
-  {id:2,
-    title: 'badly'
+  { id: 2,
+    title: 'badly',
   },
-  {id:1,
-    title: 'terribly'
+  { id: 1,
+    title: 'terribly',
   },
 ];
 
@@ -89,9 +89,9 @@ export const ERROR_TIMEOUT = 3000;
 
 export const startSortCity = 'Paris';
 
-export const MainMapSize = {height: '568.600px', width: '512px'}
+export const MainMapSize = { height: '568.600px', width: '512px' };
 
-export const RoomMapSize = {height: '579px', width: '1268.800px'}
+export const RoomMapSize = { height: '579px', width: '1268.800px' };
 
 export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';

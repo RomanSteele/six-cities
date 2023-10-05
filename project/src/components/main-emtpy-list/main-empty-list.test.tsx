@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { fakeHotel } from '../../utils/mocks';
 import HistoryRouter from '../history-router/history-router';
@@ -15,11 +15,11 @@ describe('Component: MainEmtpyList', () => {
 
     render(
       <HistoryRouter history={history}>
-            <MainEmptyList cityName={mockCityname} />
-            </HistoryRouter>
+        <MainEmptyList cityName={mockCityname} />
+      </HistoryRouter>,
     );
     expect(screen.getByText(/We could not find any property available at the moment in/i)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${mockCityname}`,'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${mockCityname}`, 'i'))).toBeInTheDocument();
   });
 
 

@@ -3,7 +3,6 @@ import {  validateEmail, validatePassword, isAuthStatusUnknown } from './helpers
 import { fakeAuthStatus, fakeEmail, fakePassword } from './utils/mocks';
 
 
-
 const mockEmail = fakeEmail;
 const mockPassword = fakePassword;
 const mockAuthStatus = fakeAuthStatus;

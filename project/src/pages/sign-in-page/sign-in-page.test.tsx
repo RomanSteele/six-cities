@@ -1,6 +1,6 @@
-import {render, screen} from '@testing-library/react';
-import {HelmetProvider} from 'react-helmet-async';
-import {createMemoryHistory} from 'history';
+import { render, screen } from '@testing-library/react';
+import { HelmetProvider } from 'react-helmet-async';
+import { createMemoryHistory } from 'history';
 import HistoryRouter from '../../components/history-router/history-router';
 import SignInPage from './sign-in-page';
 import userEvent from '@testing-library/user-event';
@@ -16,11 +16,11 @@ describe('Component: SignInPage', () => {
         <HelmetProvider>
           <SignInPage />
         </HelmetProvider>
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
 
-    const elementWithText = screen.getAllByText(/Sign in/i)
+    const elementWithText = screen.getAllByText(/Sign in/i);
 
     expect(elementWithText).not.toBeNull();
     expect(screen.getByText(/E-mail/i)).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Component: SignInPage', () => {
         <HelmetProvider>
           <SignInPage />
         </HelmetProvider>
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
 
@@ -56,10 +56,10 @@ describe('Component: SignInPage', () => {
         <HelmetProvider>
           <SignInPage />
         </HelmetProvider>
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
-    const postButton = screen.getByTestId('test-button')
+    const postButton = screen.getByTestId('test-button');
 
     await userEvent.click(postButton);
 

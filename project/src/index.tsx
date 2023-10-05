@@ -12,13 +12,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-store.dispatch(checkAuthorization())
+store.dispatch(checkAuthorization());
 
 root.render(
   <Provider store={store}>
     <ErrorModalMessage/>
     <HistoryRouter history={browserHistory}>
-            <App />
+      <App />
     </HistoryRouter>
-    </Provider>
+  </Provider>,
 );

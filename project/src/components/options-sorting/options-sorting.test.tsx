@@ -1,16 +1,15 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import OptionsSorting from './options-sorting';
 import { SortingOptions, startSortCity } from '../../const';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 
 
-
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  ACTION: {isCurrentSortCity: startSortCity,isCurrentSortingOption:SortingOptions[0]},
-})
+  ACTION: { isCurrentSortCity: startSortCity, isCurrentSortingOption: SortingOptions[0] },
+});
 
 describe('Component: OptionsSorting', () => {
 
@@ -21,13 +20,13 @@ describe('Component: OptionsSorting', () => {
     render(
       <Provider store={store}>
 
-          <OptionsSorting  />
+        <OptionsSorting  />
 
-      </Provider>
+      </Provider>,
     );
 
 
-    expect(screen.getByText(new RegExp(`${SortingOptions[2]}`,'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${SortingOptions[2]}`, 'i'))).toBeInTheDocument();
     expect(screen.getByText(/Sort by/i)).toBeInTheDocument();
 
   });

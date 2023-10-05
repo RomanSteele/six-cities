@@ -1,5 +1,5 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
@@ -12,7 +12,7 @@ const mockUserData = fakeUserData;
 const history = createMemoryHistory();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Authorized, userLoginData: mockUserData},
+  USER: { authorizationStatus: AuthorizationStatus.Authorized, userLoginData: mockUserData },
 });
 
 describe('Component: Spinner', () => {
@@ -21,13 +21,13 @@ describe('Component: Spinner', () => {
 
     render(
       <Provider store={store}>
-         <HistoryRouter history={history}>
-          <Spinner loading={true} />
-         </HistoryRouter>
-      </Provider>
-    )
+        <HistoryRouter history={history}>
+          <Spinner loading />
+        </HistoryRouter>
+      </Provider>,
+    );
 
-    expect(screen.getByTestId("loader")).toBeInTheDocument();
+    expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
 });

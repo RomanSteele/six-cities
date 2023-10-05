@@ -1,5 +1,5 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { AuthorizationStatus } from '../../const';
@@ -12,7 +12,7 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 
 const store = mockStore({
-  USER: {userLoginData: mockUserData, authorizationStatus: AuthorizationStatus.Authorized},
+  USER: { userLoginData: mockUserData, authorizationStatus: AuthorizationStatus.Authorized },
 });
 
 describe('Component: HeaderSignOut', () => {
@@ -20,12 +20,12 @@ describe('Component: HeaderSignOut', () => {
   it('should render sign out', async () => {
 
     render(
-    <Provider store={store}>
-      <HistoryRouter history={history}>
-        <HeaderSignOut data={mockUserData}  />
-      </HistoryRouter>
-    </Provider>
-    )
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <HeaderSignOut data={mockUserData}  />
+        </HistoryRouter>
+      </Provider>,
+    );
 
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
   });

@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AppData } from "../../../types/state";
-import { NameSpace } from "../../../const";
-import { initialProperty } from "../../../helpers";
+import { createSlice } from '@reduxjs/toolkit';
+import { AppData } from '../../../types/state';
+import { NameSpace } from '../../../const';
+import { initialProperty } from '../../../helpers';
 
-const initialState:AppData  = {
+const initialState: AppData  = {
   hotels: [],
   currentHotel: initialProperty,
   nearbyHotels: [initialProperty],
@@ -37,4 +37,4 @@ export const appData = createSlice ({
   },
 });
 
-export const {loadHotels, loadCurrentHotel, loadNearbyHotels, loadFavoriteHotels, loadReviews, setError } = appData.actions;
+export const { loadHotels, loadCurrentHotel, loadNearbyHotels, loadFavoriteHotels, loadReviews, setError } = appData.actions;
