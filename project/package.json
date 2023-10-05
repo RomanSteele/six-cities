@@ -30,6 +30,9 @@
       "react-app/jest",
       "htmlacademy/react-typescript"
     ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "rules": {
       "no-console": "off",
       "jsx-a11y/anchor-is-valid": "off",
